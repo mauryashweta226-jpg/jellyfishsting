@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jellyfish Explorer</title>
+
+  <style>
+    
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* keeps bubbles behind content */
+}
+
+.bubbles span {
+  position: absolute;
+  bottom: -100px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 191, 255, 0.3); /* glowing blue */
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(0, 191, 255, 0.8),
+    0 0 20px rgba(0, 191, 255, 0.6),
+    0 0 40px rgba(0, 191, 255, 0.4);
+  animation: rise 10s infinite;
+}
+
+.bubbles span:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+.bubbles span:nth-child(2) { left: 25%; animation-duration: 15s; animation-delay: 2s; }
+.bubbles span:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
+.bubbles span:nth-child(4) { left: 55%; animation-duration: 18s; animation-delay: 1s; }
+.bubbles span:nth-child(5) { left: 70%; animation-duration: 14s; animation-delay: 3s; }
+.bubbles span:nth-child(6) { left: 85%; animation-duration: 16s; animation-delay: 5s; }
+.bubbles span:nth-child(7) { left: 15%; animation-duration: 20s; animation-delay: 6s; }
+.bubbles span:nth-child(8) { left: 50%; animation-duration: 12s; animation-delay: 4s; }
+.bubbles span:nth-child(9) { left: 75%; animation-duration: 22s; animation-delay: 2s; }
+.bubbles span:nth-child(10) { left: 90%; animation-duration: 17s; animation-delay: 7s; }
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}
+
+    /* ====== Basic reset & helpers ====== */
+    :root{
+      --brand:#0d335d;       /* dark ocean blue */
+      --accent:#00bcd4;      /* jelly glow cyan */
+      --ink:#0f172a;         /* text color */
+      --bg:#bd86f0;          /* page background */
+      --card:#ffffff;        /* section background */
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none;}
+    img{max-width:100%;height:auto;border-radius:12px;}
+
+    /* ====== Header & Navigation ====== */
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:rgba(13,51,93,0.95);
+      backdrop-filter:saturate(120%) blur(4px);
+      color:#fff;
+      box-shadow:0 4px 16px rgba(0,0,0,0.15);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:10px 16px;
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    }
+    .brand{font-weight:800; letter-spacing:.5px;}
+    .menu{display:flex; gap:12px; flex-wrap:wrap; margin-left:auto;}
+    .menu a{
+      color:#e6f7ff; padding:8px 10px; border-radius:8px; font-size:14px;
+    }
+    .menu a:hover{background:rgba(255,255,255,0.12);}
+
+    /* ====== Hero with animated GIF ====== */
+    .hero{
+      position:relative; min-height:78vh; display:grid; place-items:center;
+      overflow:hidden;
+    }
+    .hero-gif{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; filter:saturate(105%) contrast(105%);
+      transform:scale(1.02);
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.55));
+    }
+    .hero-content{
+      position:relative; z-index:1; text-align:center; color:white; padding:0 16px;
+      max-width:900px; animation:fadeInUp .9s ease-out both;
+    }
+    .hero h1{margin:0 0 10px; font-size:clamp(28px,5vw,48px);}
+    .hero p{margin:0 0 18px; font-size:clamp(14px,2.6vw,18px); opacity:.95;}
+    .cta{
+      display:inline-block; background:var(--accent); color:#00202a;
+      padding:12px 18px; border-radius:999px; font-weight:700;
+      box-shadow:0 6px 20px rgba(0,188,212,.35);
+    }
+    .cta:hover{transform:translateY(-1px);}
+    @keyframes fadeInUp{
+      from{opacity:0; transform:translateY(8px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    /* ====== Sections ====== */
+    main{max-width:1100px; margin:40px auto; padding:0 16px;}
+    section{
+      background:var(--card); border:1px solid #e6f0fa;
+      border-radius:16px; padding:22px; margin:18px 0 26px;
+      box-shadow:0 4px 18px rgba(13,51,93,0.06);
+    }
+    section h2{
+      margin-top:0; color:var(--brand);
+      border-bottom:2px solid #eaf3ff; padding-bottom:8px;
+    }
+    .grid{
+      display:grid; gap:16px;
+    }
+    @media (min-width:800px){
+      .grid-2{grid-template-columns:1.2fr .8fr;}
+      .grid-3{grid-template-columns:repeat(3,1fr);}
+    }
+
+    /* ====== Contact Us Section ====== */
+    #contact {
+      background: var(--card);
+      border: 1px solid #e6f0fa;
+      border-radius: 16px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 700px;
+      box-shadow: 0 4px 18px rgba(13,51,93,0.08);
+    }
+    #contact h2 {
+      color: var(--brand);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #contact label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--brand);
+    }
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cddbef;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: 0.3s ease;
+      background: #f9fcff;
+    }
+    #contact input:focus,
+    #contact textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 6px rgba(0, 188, 212, 0.3);
+    }
+    #contact button {
+      background: var(--accent);
+      color: #00202a;
+      font-weight: 700;
+      border: none;
+      padding: 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    #contact button:hover {
+      transform: translateY(-2px);
+      background: #00a5bc;
+    }
+
+    /* ====== Footer ====== */
+    footer{
+      text-align:center; padding:22px 16px 60px; color:#52708a;
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span>
+</div>
+
+
+  <!-- ====== Sticky Header & Nav ====== -->
+  <header>
+    <nav class="nav">
+      <div class="brand">🪼 Jellyfish Explorer</div>
+      <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#biology">Biology</a>
+        <a href="#types">Types</a>
+        <a href="#ecology">Ecology</a>
+        <a href="#humans">Jellyfish & Humans</a>
+        <a href="#biotech">Research & Biotech</a>
+        <a href="#library">Library</a>
+        <a href="#case">Case Study</a>
+        <a href="#future">Future</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ====== HERO with animated GIF ====== -->
+  <section id="home" class="hero">
+    <img class="hero-gif"
+         src="https://i.gifer.com/1AkP.gif"
+         alt="jellyfish gif from gifer" />
+    <div class="hero-content">
+    <h1>Discover the World of Jellyfish</h1>
+    <p>"Where Oceans Glow with Life"</p>
+    <a class="cta"href="#about">Start Exploring↓</a>
+  </div>
+</section>
+
+<style>
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('jellyfish.gif') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+height: 100vh;  /* make hero take full screen */
+  position: relative;
+}
+
+.hero .overlay {
+  background: rgb(253, 253, 253); /* dark glass effect */
+  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 800px;
+}
+.hero h1 {
+  font-size: 3rem;
+  color: #ffffff; /* bright white, always visible */
+  text-shadow: 
+    0 0 10px #00eaff,   /* cyan glow */
+    0 0 20px #7f00ff,   /* purple glow */
+    0 0 30px #ff00ff;   /* pink glow */
+  animation: float 3s ease-in-out infinite;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  color: #ffffff; /* white text */
+  text-shadow: 
+    0 0 10px #00eaff,
+    0 0 20px #7f00ff,
+    0 0 30px #ff00ff;
+  animation: float 3s ease-in-out infinite; /* same floating effect */
+  margin: 0;
+}
+</style>
+  <main>
+  <section id="about">
+  <h2>About Jellyfish</h2>
+  <!-- Jellyfish GIF -->
+  <img src="jellyfish.gif " 
+       alt="Glowing Jellyfish" 
+       style="width:100%; max-width:600px; border-radius:12px; display:block; margin:20px auto;">
+  <p>
+    Jellyfish are among the oldest and most fascinating creatures on Earth, having drifted through the 
+    oceans for more than 500 million years—long before the dinosaurs appeared. Belonging to the phylum 
+    Cnidaria, these soft-bodied, gelatinous animals are found in every ocean, from shallow coastal waters 
+    to the deepest trenches of the sea. Despite being called “fish,” jellyfish are not fish at all, as 
+    they lack bones, brains, hearts, and gills. Instead, they are made up of more than 90% water, with a 
+    body structure that is both delicate and efficient for life in the open ocean.
+  </p>
+
+  <p>
+    Jellyfish have a simple yet effective body plan that has allowed them to thrive for hundreds of 
+    millions of years. Their umbrella-shaped bell pulsates gently to propel them through the water, 
+    although they rely largely on ocean currents for movement. Hanging beneath the bell are tentacles 
+    lined with specialized stinging cells known as cnidocytes, which they use to capture prey and defend 
+    themselves from predators. Their diet mainly consists of plankton, small fish, and other tiny marine 
+    organisms, which they paralyze with venom before drawing them into their central mouth.
+  </p>
+
+  <p>
+    Far from being insignificant drifters, jellyfish play important roles in marine ecosystems. They 
+    serve as both predators and prey, helping to maintain balance within oceanic food webs. Some species 
+    are bioluminescent, producing their own light in the darkness of the deep sea, while others engage in 
+    fascinating symbiotic relationships with algae or small marine creatures. Their adaptability has made 
+    them one of the most successful and widespread groups of marine animals in existence.
+  </p>
+
+  <p>
+    Beyond their ecological significance, jellyfish captivate humans with their beauty and mystery. 
+    They are admired for their graceful movements and translucent forms, yet also feared for their painful 
+    stings, which in some cases can be life-threatening. Today, jellyfish are not only the subject of 
+    scientific research but also inspire art, design, and even biotechnology. As climate change and 
+    overfishing alter marine ecosystems, jellyfish populations are expanding in many regions, making them 
+    increasingly relevant to both scientists and society at large.
+  </p>
+</section>
+  
+
+<section id="biology">
+  <h2>Biology & Anatomy of Jellyfish</h2>
+   
+
+  <p>
+    Jellyfish possess one of the simplest yet most efficient body structures in the animal kingdom. 
+    Unlike vertebrates, they have no skeleton, brain, heart, or lungs. Their body is composed mainly of a 
+    gelatinous substance called mesoglea, which gives them their transparent, soft appearance. The body 
+    is organized into two main layers: the outer epidermis and the inner gastrodermis, which surrounds the 
+    central digestive cavity. This simple body plan has allowed jellyfish to survive for hundreds of 
+    millions of years with very little evolutionary change.
+  </p>
+
+  <h3>The Bell</h3>
+  <p>
+    The bell, or umbrella-shaped structure, is the most recognizable feature of a jellyfish. It is made up 
+    largely of mesoglea and functions both as protection and as a means of locomotion. By contracting and 
+    relaxing its bell, a jellyfish can push water behind it, creating propulsion. However, their movement 
+    is mostly passive, with ocean currents carrying them across great distances. The bell also contains 
+    nerve nets—simple networks of nerve cells that allow the jellyfish to detect light, touch, and 
+    vibrations in the water.
+  </p>
+
+  <h3>Tentacles and Stinging Cells</h3>
+  <p>
+    Jellyfish tentacles are perhaps their most iconic and dangerous feature. These slender, often 
+    trailing structures are lined with specialized cells called cnidocytes, which contain tiny, 
+    harpoon-like structures called nematocysts. When triggered, nematocysts inject venom into prey or 
+    predators, immobilizing small fish, plankton, and other organisms. The strength of a sting varies 
+    between species—some are harmless to humans, while others, like the box jellyfish, deliver venom 
+    potent enough to be deadly.
+  </p>
+
+  <h3>The Gastrovascular Cavity</h3>
+  <p>
+    At the center of a jellyfish is the gastrovascular cavity, which functions as both a stomach and 
+    circulatory system. Jellyfish have only one opening that serves as both mouth and anus, through 
+    which food enters and waste exits. Their diet primarily consists of plankton and small marine 
+    animals, which are paralyzed by their tentacles and transported to the central cavity for digestion. 
+    Nutrients are then distributed throughout the jellyfish’s body by diffusion, since they lack a 
+    complex circulatory system.
+  </p>
+
+  <h3>Nerve Net and Sense Organs</h3>
+  <p>
+    While jellyfish do not have a brain, they do possess a decentralized nerve net that allows them to 
+    respond to their environment. Some species also have specialized sensory structures called rhopalia, 
+    which detect light, orientation, and vibrations. Box jellyfish are especially advanced, with 
+    complex eyes that include lenses, retinas, and corneas—features rarely seen in invertebrates. These 
+    adaptations allow jellyfish to sense predators, locate prey, and navigate through their watery world 
+    despite their simplicity.
+  </p>
+
+  <h3>Life Cycle</h3>
+  <p>
+    One of the most fascinating aspects of jellyfish biology is their life cycle. Jellyfish undergo 
+    complex alternations between the polyp and medusa stages. The polyp stage is sessile, attaching to 
+    rocks or other surfaces and reproducing asexually. From these polyps, juvenile medusae known as 
+    ephyrae are released, which grow into the adult jellyfish we recognize. This dual-stage life cycle 
+    has contributed greatly to their evolutionary success and resilience in changing environments.
+  </p>
+
+  <h3>Adaptations</h3>
+  <p>
+    Jellyfish have developed remarkable adaptations for survival. Their transparent bodies make them 
+    nearly invisible in the water, offering protection from predators. Many deep-sea species are 
+    bioluminescent, producing light to confuse predators or attract prey. Some jellyfish even host 
+    symbiotic algae within their tissues, allowing them to generate energy from sunlight. These 
+    biological features highlight not only their simplicity but also their extraordinary adaptability 
+    across diverse marine environments.
+  </p>
+</section>
+    
+<section id="types">
+  <h2>Types of Jellyfish</h2>
+
+  <p>
+    Jellyfish are an incredibly diverse group of organisms that belong to the phylum Cnidaria and the class 
+    Scyphozoa, although many jellyfish-like creatures are also found in other related classes. They vary 
+    greatly in size, color, and behavior, ranging from tiny species that are barely visible to the naked eye 
+    to massive giants with tentacles stretching for meters. Despite their differences, all jellyfish share 
+    the common feature of a soft, gelatinous body and specialized stinging cells known as cnidocytes, which 
+    they use for defense and capturing prey. Understanding the different types of jellyfish provides insights 
+    into their evolutionary adaptations, ecological roles, and unique survival strategies.
+  </p>
+
+  <h3>True Jellyfish (Scyphozoa)</h3>
+  <p>
+    The most commonly recognized group, true jellyfish belong to the class Scyphozoa. These are the classic 
+    bell-shaped jellyfish seen drifting in oceans around the world. Species like the <em>Aurelia aurita</em>, 
+    commonly called the moon jellyfish, are widely studied due to their translucent bodies and relatively 
+    simple anatomy. True jellyfish have a distinct medusa stage, during which they display their iconic 
+    pulsating bell and long tentacles. They are often found in coastal waters, where they play an important 
+    role in marine food webs by feeding on plankton and serving as prey for larger animals.
+  </p>
+
+  <h3>Box Jellyfish (Cubozoa)</h3>
+  <p>
+    Box jellyfish, belonging to the class Cubozoa, are among the most dangerous jellyfish in the world. 
+    Unlike most jellyfish, they have a cube-shaped bell and remarkable swimming abilities, which allow them 
+    to actively move through the water rather than simply drifting with currents. The most infamous species, 
+    <em>Chironex fleckeri</em>, found in the waters of Australia and Southeast Asia, is known for its 
+    potentially lethal sting that can cause cardiac arrest in humans within minutes. These jellyfish possess 
+    highly developed eyes and nervous systems, enabling them to navigate their environment and hunt prey 
+    more efficiently than other species.
+  </p>
+
+  <h3>Hydrozoan Jellyfish (Hydrozoa)</h3>
+  <p>
+    The class Hydrozoa includes many small jellyfish that are often overlooked due to their size and 
+    delicate appearance. Unlike Scyphozoans, hydrozoan jellyfish typically have both polyp and medusa stages 
+    that are equally prominent in their life cycle. One notable species is the <em>Turritopsis dohrnii</em>, 
+    often referred to as the “immortal jellyfish.” This extraordinary organism has the ability to revert its 
+    cells back to a youthful polyp stage after reaching maturity, essentially resetting its life cycle and 
+    avoiding natural death under favorable conditions. This unique biological feature has drawn significant 
+    interest from researchers studying aging and cellular regeneration.
+  </p>
+
+  <h3>Staurozoa (Stalked Jellyfish)</h3>
+  <p>
+    Unlike free-swimming jellyfish, members of the class Staurozoa, or stalked jellyfish, spend much of their 
+    lives attached to surfaces such as rocks or seaweed in shallow, cold waters. These jellyfish have a stalk 
+    that anchors them to the substrate, giving them a flower-like appearance. Their unusual lifestyle sets 
+    them apart from other jellyfish, as they do not drift with ocean currents but instead remain relatively 
+    stationary. Although less studied than other groups, stalked jellyfish provide unique insights into the 
+    diversity and adaptability of cnidarians.
+  </p>
+
+  <h3>Deep-Sea Jellyfish</h3>
+  <p>
+    The mysterious depths of the ocean host some of the most fascinating jellyfish species, many of which 
+    have only recently been discovered thanks to advancements in deep-sea exploration. These jellyfish are 
+    often bioluminescent, producing light through chemical reactions that help them attract prey, deter 
+    predators, or communicate. Species like the giant jellyfish <em>Nemopilema nomurai</em>, found in the 
+    waters of East Asia, can reach over two meters in diameter and weigh up to 200 kilograms. Such enormous 
+    jellyfish not only highlight the impressive variety of forms but also underscore their significant 
+    ecological impact in marine ecosystems.
+  </p>
+
+  <h3>Comb Jellies (Ctenophora) – The Look-Alikes</h3>
+  <p>
+    Though not true jellyfish, comb jellies (phylum Ctenophora) are often mistaken for them due to their 
+    translucent, gelatinous bodies. Unlike cnidarian jellyfish, comb jellies do not possess stinging cells. 
+    Instead, they use sticky cells called colloblasts to capture prey. They are known for their mesmerizing 
+    rows of cilia that refract light into a shimmering rainbow effect as they move through the water. While 
+    structurally and evolutionarily different, comb jellies occupy a similar ecological role as predators of 
+    plankton and small organisms, making them important components of ocean ecosystems.
+  </p>    
+</section>
+
+
+<section id="ecology">
+  <h2>Ecology & Environment of Jellyfish</h2>
+
+  <p>
+    Jellyfish are more than just drifting creatures of the sea; they are dynamic and influential organisms 
+    that shape the balance of marine ecosystems in subtle yet powerful ways. Found in every ocean, from 
+    shallow coastal lagoons to the deepest abyssal plains, jellyfish interact with their environment in 
+    multiple ways—as predators, prey, competitors, and even ecosystem engineers. Their presence and behavior 
+    influence nutrient cycling, food web dynamics, and the health of ocean habitats, making them both 
+    ecologically vital and environmentally fascinating.
+  </p>
+
+  <h3>Jellyfish in the Marine Food Web</h3>
+  <p>
+    In the vast tapestry of marine life, jellyfish occupy an important niche. They are voracious feeders, 
+    consuming plankton, fish eggs, larvae, and even small fish. This predation helps regulate populations of 
+    plankton and prevents uncontrolled growth of microscopic organisms. At the same time, jellyfish themselves 
+    are a crucial source of nourishment for many larger predators, including leatherback sea turtles, ocean 
+    sunfish (<em>Mola mola</em>), certain seabirds, and even larger jellyfish species. Their dual role as predator 
+    and prey positions them at the heart of the marine food chain, where they directly and indirectly affect 
+    the survival of countless species.
+  </p>
+
+  <h3>Jellyfish Blooms and Their Consequences</h3>
+  <p>
+    One of the most striking ecological phenomena associated with jellyfish is the occurrence of massive 
+    population explosions known as blooms. These events, where millions of jellyfish appear in one region, 
+    are becoming increasingly frequent worldwide. Several factors contribute to these blooms: rising sea 
+    temperatures due to climate change, overfishing that removes natural predators, nutrient pollution that 
+    fuels plankton growth, and the expansion of oxygen-poor “dead zones” where jellyfish thrive but fish 
+    cannot survive.
+  </p>
+  <p>
+    The impact of these blooms is complex. On one hand, they provide sudden surges of food for predators and 
+    transport organic matter to deeper waters when jellyfish die and sink. On the other hand, they can disrupt 
+    human industries by clogging fishing nets, damaging coastal aquaculture farms, and even blocking the 
+    intake pipes of power plants. For local ecosystems, these swarms may also outcompete fish for food and 
+    alter the natural balance of marine communities.
+  </p>
+
+  <h3>Indicators of Environmental Change</h3>
+  <p>
+    Because jellyfish respond quickly to environmental shifts, they are often seen as natural indicators of 
+    ocean health. Their ability to thrive in warm, low-oxygen, and nutrient-rich waters makes them well suited 
+    for conditions that are becoming more common due to human influence. As coral reefs bleach and fish 
+    populations decline, jellyfish often appear in greater numbers, signaling deeper imbalances in marine 
+    ecosystems. Scientists therefore study jellyfish not only as fascinating organisms but also as early 
+    warning systems for climate change, overfishing, and ocean pollution.
+  </p>
+
+  <h3>Human Impacts and the Rise of Jellyfish</h3>
+  <p>
+    Human activities have accelerated the spread and abundance of jellyfish in many regions. Overfishing 
+    removes predators like turtles and large fish, allowing jellyfish populations to grow unchecked. Plastic 
+    pollution poses another major issue: jellyfish often mistake floating plastic bags for food, while sea 
+    turtles, in turn, mistake plastic bags for jellyfish. This creates deadly consequences for both. 
+    Additionally, the shipping industry spreads jellyfish across oceans through ballast water, sometimes 
+    introducing species into environments where they become invasive. Coastal development has also 
+    unintentionally benefited jellyfish, as man-made structures such as piers, docks, and oil platforms 
+    provide ideal surfaces for jellyfish polyps to attach and grow, giving rise to more frequent blooms.
+  </p>
+
+  <h3>The Role of Jellyfish in Ocean Cycles</h3>
+  <p>
+    Despite the challenges they sometimes pose, jellyfish also contribute to vital ecological processes. When 
+    they die and sink to the ocean floor, their bodies deliver a concentrated source of nutrients and carbon 
+    to deep-sea ecosystems, feeding scavengers and fueling microbial activity. This process, known as the 
+    “jelly pump,” plays a role in the global carbon cycle by transporting carbon from surface waters to the 
+    deep sea, where it can be stored for long periods. In this way, jellyfish influence not only local food 
+    webs but also the global climate system.
+  </p>
+
+  <h3>Conservation and the Future of Jellyfish</h3>
+  <p>
+    Managing jellyfish populations is not straightforward. Unlike fish, they cannot be easily harvested or 
+    controlled, and their life cycles involve both free-swimming medusae and stationary polyps that are 
+    difficult to track. Conservation efforts focus instead on restoring ecological balance—protecting sea 
+    turtles and other predators, reducing pollution and overfishing, and better monitoring jellyfish dynamics. 
+    Some regions are even turning challenges into opportunities, harvesting jellyfish as a source of food, 
+    fertilizers, and medical research materials.
+  </p>
+</section>
+
+<section id="humans" class="section">
+  <h2>Jellyfish & Humans</h2>
+
+  <p>
+    The relationship between jellyfish and humans is complex, spanning from dangerous encounters in the 
+    ocean to beneficial contributions in science, medicine, and even culture. While they are often feared 
+    for their painful stings, jellyfish also provide valuable insights into biology and are increasingly 
+    being studied for their potential in biotechnology and environmental monitoring. Their presence in 
+    human life is both challenging and inspiring, making them one of the most paradoxical creatures in the 
+    marine world.
+  </p>
+
+  <h3>Stings and Human Health</h3>
+  <p>
+    Perhaps the most direct interaction between jellyfish and humans occurs through stings. Jellyfish 
+    tentacles are lined with specialized stinging cells called cnidocytes, which release venom through 
+    microscopic harpoons known as nematocysts. When swimmers or divers accidentally come into contact 
+    with these tentacles, they may experience reactions ranging from mild irritation to excruciating pain. 
+    In most cases, stings are not life-threatening, but certain species, such as the Australian box 
+    jellyfish (<em>Chironex fleckeri</em>) and the Irukandji jellyfish (<em>Carukia barnesi</em>), can 
+    deliver venom potent enough to cause severe systemic reactions and even death if left untreated. 
+    Coastal communities in regions with venomous jellyfish often post warnings, and specialized treatments 
+    and first-aid protocols have been developed to mitigate risks.
+  </p>
+
+  <h3>Impact on Fisheries and Tourism</h3>
+  <p>
+    Jellyfish blooms—large population explosions—pose significant challenges to fisheries and coastal 
+    economies. Dense swarms of jellyfish can clog fishing nets, damage aquaculture facilities, and consume 
+    massive amounts of plankton that would otherwise sustain fish populations. In some cases, jellyfish 
+    even prey directly on fish eggs and larvae, further reducing fishery stocks. Beyond fisheries, jellyfish 
+    blooms can disrupt tourism when stinging species wash up on beaches in large numbers, deterring 
+    swimmers and divers. This economic impact has prompted greater research into the environmental factors 
+    that trigger jellyfish outbreaks, such as rising sea temperatures, overfishing of natural predators, 
+    and nutrient pollution.
+  </p>
+
+  <h3>Jellyfish in Science and Medicine</h3>
+  <p>
+    Despite their negative reputation, jellyfish have made remarkable contributions to science. One of the 
+    most important discoveries in modern biology—the green fluorescent protein (GFP)—was first isolated from 
+    the jellyfish <em>Aequorea victoria</em>. GFP revolutionized cellular and molecular biology by allowing 
+    scientists to track the expression of genes and proteins with glowing markers, earning a Nobel Prize in 
+    2008. Today, GFP and its derivatives are essential tools in biomedical research, including cancer 
+    studies, neuroscience, and drug development. Beyond GFP, scientists are exploring jellyfish venom for 
+    its potential therapeutic applications, such as painkillers, heart medications, and anticancer compounds.
+  </p>
+
+  <h3>Cultural and Culinary Significance</h3>
+  <p>
+    In several Asian countries, jellyfish are considered a delicacy and have been consumed for centuries. 
+    Certain species are processed into a dried or pickled form and used in salads or traditional dishes. 
+    Rich in collagen and low in fat, jellyfish are sometimes promoted as a health food, although proper 
+    preparation is necessary to remove toxins. Culturally, jellyfish also feature in mythology, art, and 
+    symbolism, often representing themes of transformation, fragility, or the mysteries of the sea. Their 
+    mesmerizing, ethereal beauty has inspired artists, writers, and filmmakers, making them both feared and 
+    admired in human imagination.
+  </p>
+
+  <h3>Biotechnology and Environmental Monitoring</h3>
+  <p>
+    Beyond the laboratory, jellyfish are now being studied for their potential applications in sustainable 
+    technology and environmental science. Researchers are investigating how jellyfish mucus can trap 
+    microplastics, offering a possible method for cleaning polluted waters. Their collagen is being tested 
+    for use in regenerative medicine and tissue engineering, while their bioluminescence continues to 
+    inspire innovations in imaging technology. At the same time, jellyfish populations are increasingly 
+    viewed as indicators of ecosystem change. Their ability to thrive in warm, oxygen-poor, and polluted 
+    waters makes them important bioindicators of environmental stress in marine systems.
+  </p>
+</section>
+<section id="biotech">
+  <h2>Research & Biotechnology</h2>
+
+  <p>
+    Modern research on jellyfish sits at the intersection of classical marine biology and cutting-edge genomics and computational biology. 
+    Over the past decade, whole-genome and transcriptome sequencing projects, combined with proteomics and structural modelling, have transformed 
+    our understanding of how jellyfish develop, hunt, envenomate, and evolve. These advances enable applied outcomes — from better clinical 
+    treatments for stings to novel biotechnologies derived from unique jellyfish proteins — while also illuminating deep evolutionary questions 
+    about the origins of animal body plans and nervous systems.
+  </p>
+
+  <h3>Genome sequencing projects </h3>
+  <p>
+    Genome sequencing projects produce foundational reference datasets that allow researchers to link genes to traits such as venom production,
+    sensory organ development, and life cycle control. For example, the genome of the giant Nomura’s jellyfish (<em>Nemopilema nomurai</em>) 
+    provided the first genome-scale view into the gene families responsible for active predation and venom components, revealing expansions 
+    in proteases and pore-forming toxin families that are concentrated in tentacle and nematocyst tissues. These genomic data are particularly 
+    valuable when paired with proteomics of venom extracts and high-resolution transcriptomes from tentacles and nematocyst structures, as they 
+    enable investigators to map toxin transcripts to protein products and to identify enzymatic classes (metalloproteases, phospholipases, pore-formers) 
+    that drive dermonecrosis and systemic toxicity. 
+  </p>
+
+  <p>
+    Complementing this, sequencing the genome of the moon jelly (<em>Aurelia aurita</em>) and other medusozoans has given researchers critical insight 
+    into the genetic underpinnings of medusa-specific features — notably nervous system components, sensory organ (rhopalia) development, and 
+    gene families involved in muscle-like contractile function that power bell pulsation. Comparative analysis across medusozoan genomes shows that 
+    many developmental gene families are conserved but that lineage-specific expansions and regulatory changes underlie the origin of the 
+    free-swimming medusa. These genomes therefore serve two purposes: (1) they identify toxin and venom-related genes that can be prioritized for 
+    structural and functional work, and (2) they provide the evolutionary context to study how nervous systems and sensory organs evolved in early animals.
+  </p>
+
+  <h3>Bioinformatics & computational roles</h3>
+  <p>
+    Bioinformatics is central to modern jellyfish research. Comparative genomics — the systematic comparison of gene content, synteny, and gene-family 
+    evolution across multiple cnidarian genomes — helps reconstruct ancestral gene repertoires and reveal which gene changes correlate with the 
+    evolution of novel traits (venom complexity, image-forming eyes, medusa body plan). Phylogenomic pipelines that combine orthology assignment 
+    (e.g., OrthoFinder/OrthoMCL), multiple sequence alignment, and species-tree inference are commonly used to place jellyfish genes into an 
+    evolutionary context and to test hypotheses about gene family expansions related to envenomation or bioluminescence. 
+  </p>
+
+  <p>
+    For venom science specifically, modern workflows combine deep transcriptomics, proteomics, and structural bioinformatics. Transcriptomes from 
+    tentacles and isolated nematocysts produce candidate toxin sequences; mass spectrometry-based proteomics validates which peptides are present 
+    in venom; and protein-structure prediction (homology modelling, Rosetta, and modern AI approaches) allows researchers to generate molecular models 
+    for pore-forming toxins and metalloproteases. These structural models guide mutational experiments, epitope mapping for antivenom development, 
+    and in silico screening of small-molecule or peptide inhibitors that may blunt venom activity. Structural work on CfTX-like proteins (box jelly toxins) 
+    and predicted helical/pore-forming regions has been especially informative for hypothesizing how toxins disrupt cardiac and cellular membranes.
+  </p>
+
+  <h3>Phylogenetics of bioluminescence and related gene families</h3>
+  <p>
+    Bioluminescence in cnidarians is distributed across lineages and is encoded by a range of luciferases, photoproteins, and accessory genes. 
+    Phylogenetic studies that assemble luciferase/photoprotein families across taxa—paired with expression data—allow researchers to infer whether 
+    bioluminescence arose multiple times independently or via horizontal transfer, and which domain architectures correlate with particular light-emission chemistries. 
+    Combining gene trees with species trees also helps identify lineage-specific duplications that gave rise to novel light-emitting phenotypes. 
+  </p>
+
+  <h3> Workflow </h3>
+  <p>
+    A typical research workflow that links genomes to toxin biology and evolution looks like this: (1) sample collection and tissue-specific RNA-seq 
+    (tentacles, nematocysts, rhopalia), (2) genome and transcriptome assembly (long reads + short-read polishing), (3) gene annotation and secretome 
+    prediction (signal peptides, secretory protein filters), (4) venom proteomics (LC–MS/MS) to validate secreted toxins, (5) structural prediction and 
+    in silico docking for candidate inhibitors, and (6) comparative genomics / phylogenetics to place novel toxins in an evolutionary framework. 
+    This integrative pipeline enables studies that directly inform medical responses to stings, antivenom design, and the discovery of bioactive molecules 
+    with therapeutic potential. 
+  </p>
+
+  <h3>References: Research Papers</h3>
+<p>
+  Below are curated, high-quality primary references and reviews that are 
+  immediately relevant to jellyfish genomics and biotechnology 
+  (Nemopilema nomurai genome – stinging cells; Aurelia aurita genome – 
+  nervous system evolution; toxin structure prediction; and 
+  bioluminescence phylogenetics). Each entry is the full citation 
+  along with a direct link.
+</p>
+
+<ol>
+  <li>
+    Kim, H.-M., Nam, B.-H., Kim, J.-H., et al. 
+    <strong>The genome of the giant Nomura’s jellyfish sheds light on the 
+    early evolution of active predation.</strong> 
+    <em>BMC Biology</em>, 17, 28 (2019).  
+    <br>
+    <a href="https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7" target="_blank">
+      https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7
+    </a>
+  </li>
+
+  <li>
+    Leclère, L., Horin, C., Chevalier, S., et al. 
+    <strong>The genome of the jellyfish Aurelia and the evolutionary 
+    origins of multicellularity and the nervous system.</strong> 
+    <em>Nature Ecology & Evolution</em>, 3, 96–104 (2019).  
+    <br>
+    <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank">
+      https://www.nature.com/articles/s41559-018-0719-8
+    </a>
+  </li>
+
+  <li>
+    Morandini, A. C., et al. 
+    <strong>Comparative genomics of cnidarians and insights into 
+    the evolution of venom and bioluminescence genes.</strong> 
+    <em>Frontiers in Ecology and Evolution</em> (2020).  
+    <br>
+    <a href="https://www.frontiersin.org/articles/10.3389/fevo.2020.00356/full" target="_blank">
+      https://www.frontiersin.org/articles/10.3389/fevo.2020.00356/full
+    </a>
+  </li>
+
+  <li>
+    Rachamim, T., et al. 
+    <strong>Protein structure and functional prediction of jellyfish 
+    toxins using bioinformatics approaches.</strong> 
+    <em>Marine Drugs</em>, 13(7), 3892–3916 (2015).  
+    <br>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/26184308/" target="_blank">
+      https://pubmed.ncbi.nlm.nih.gov/26184308/
+    </a>
+  </li>
+
+
+    
+    <li>
+      Gold DA, et al. (2019). <em>The genome of Aurelia and the evolutionary origins of cnidarian development</em>. <strong>Nature Ecology & Evolution</strong>.
+      <a href="https://www.nature.com/articles/s41559-019-0853-y" target="_blank">Read here</a>
+    </li>
+    
+    
+    <li>
+      Lee H, et al. (2019). <em>Proteomic Analysis of Novel Components of Nemopilema nomurai Jellyfish Venom: Deciphering the Mode of Action</em>. <strong>Toxins (MDPI)</strong>.
+      <a href="https://pubmed.ncbi.nlm.nih.gov/30857234/" target="_blank">Read here</a>
+    </li>
+    <li>
+      Gold DA, et al. (2019). <em>Medusozoan genomes inform the evolution of the jellyfish body plan</em>. <strong>Nature Ecology & Evolution</strong>.
+      <a href="https://www.nature.com/articles/s41559-019-0853-y" target="_blank">Read here</a>
+    </li>
+    <li>
+      Kang C, et al. (2023). <em>Identification of Cardiorespiratory Toxic Components of Nemopilema nomurai Using Chromatographic Methods</em>. <strong>Toxicon</strong>.
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0041010123001125" target="_blank">Read here</a>
+    </li>
+    <li>
+      Lee H, et al. (2021). <em>Proteomic Changes During the Dermal Toxicity Induced by Nemopilema nomurai Venom in HaCaT Human Keratinocyte</em>. <strong>Toxins (MDPI)</strong>.
+      <a href="https://doi.org/10.3390/toxins13050311" target="_blank">Read here</a>
+    </li>
+    <li>
+      Duarte CM, et al. (2024). <em>Management of Jellyfish Outbreaks to Achieve Good Environmental Outcomes: A Review</em>. <strong>Frontiers in Ocean Sustainability</strong>.
+      <a href="https://www.frontiersin.org/articles/10.3389/focsu.2024.1449190/full" target="_blank">Read here</a>
+    </li>
+    <li>
+      Helm RR, et al. (2018). <em>Evolution and Development of Scyphozoan Jellyfish</em>. <strong>Biological Reviews</strong>.
+      <a href="https://onlinelibrary.wiley.com/doi/10.1111/brv.12393" target="_blank">Read here</a>
+    </li>
+    <li>
+      Yoon WD, et al. (2024). <em>Comparative Analysis of Tentacle Extract and Nematocyst Venom: Toxicity, Mechanisms, and Potential Intervention in the Giant Jellyfish Nemopilema nomurai</em>. <strong>Marine Drugs</strong>.
+      <a href="https://www.mdpi.com/1660-3397/22/8/362" target="_blank">Read here</a>
+    </li>
+    <li>
+      Fuchs B, et al. (2013). <em>Regulation of Polyp-to-Jellyfish Transition5 in Aurelia aurita</em>. <strong>Current Biology</strong>.
+      <a href="https://www.sciencedirect.com/science/article/pii/S0960982213015224" target="_blank">Read here</a>
+    </li>
+    </ol>
+    </section>
+
+<section id="library">
+  <h2>Research Library</h2>
+  <p>Below are some curated research papers and reviews related to jellyfish genomics, bioinformatics, and biotechnology. These are from high-impact journals like Nature, Springer, BMC, Frontiers, and Taylor & Francis.</p>
+  
+  <ol>
+    <li>
+      <strong>The genome of the giant Nomura’s jellyfish sheds light on the early evolution of active predation.</strong>  
+      <em>BMC Biology, 2019</em>.  
+      <a href="https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>The genome of Aurelia aurita and the evolution of the medusa (nervous system components).</strong>  
+      <em>Nature Ecology & Evolution, 2019</em>.  
+      <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Medusozoan genomes inform the evolution of the jellyfish body plan.</strong>  
+      <em>Nature Ecology & Evolution, 2019</em>.  
+      <a href="https://www.nature.com/articles/s41559-019-0853-y" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Comprehensive Proteome Reveals the Key Lethal Toxins in the Venom of Jellyfish Nemopilema nomurai.</strong>  
+      <em>Journal of Proteome Research, 2020</em>.  
+      <a href="https://pubs.acs.org/doi/10.1021/acs.jproteome.0c00277" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Transcriptome and venom proteome of the box jellyfish Chironex fleckeri.</strong>  
+      <em>BMC Genomics, 2015</em>.  
+      <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-1568-3" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Comparative genomics of mortal and immortal cnidarians unveils key mechanisms of rejuvenation and life-history variation.</strong>  
+      <em>eLife, 2022</em>.  
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9459311/" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Structural characterisation of predicted helical regions in CfTX-1 (box jellyfish toxin) and implications for pore-forming mechanism.</strong>  
+      <em>Scientific Reports, 2018</em>.  
+      <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6024933/" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Management of jellyfish outbreaks to achieve good environmental outcomes: a review.</strong>  
+      <em>Frontiers in Ocean Sustainability, 2024</em>.  
+      <a href="https://www.frontiersin.org/articles/10.3389/focsu.2024.1449190/full" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Inhibitory effect of metalloproteinase inhibitors on skin cell inflammation induced by Nemopilema nomurai nematocyst venom.</strong>  
+      <em>Toxins (MDPI), 2019</em>.  
+      <a href="https://pubmed.ncbi.nlm.nih.gov/30857352/" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Advances in Jellyfish Sting Mechanisms and Treatment Strategies.</strong>  
+      <em>Marine Drugs, 2023</em>.  
+      <a href="https://www.mdpi.com/1660-3397/23/6/231" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Jellyfish antivenoms: Past, present and future.</strong>  
+      <em>Journal of Toxicology / Taylor & Francis</em>.  
+      <a href="https://www.tandfonline.com/doi/abs/10.1081/TXR-120019024" target="_blank">Read Full Paper</a>
+    </li>
+    <li>
+      <strong>Insights into the bioluminescence systems of three sea pens (Cnidaria): transcriptome and biochemical evidence.</strong>  
+      <em>Open Biology, 2025</em>.  
+      <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12040472/" target="_blank">Read Full Paper</a>
+    </li>
+  </ol>
+  <h3>Recommended Educational Videos</h3>
+  <ul>
+    <li>
+      <a href="https://www.youtube.com/watch?v=t7QMfen0Oz0" target="_blank">
+        All About Jellyfish – General overview
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=2spbFpzyiJ0" target="_blank">Caltech & Harvard bio-engineers explain “Artificial Jellyfish”</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=hdm6nhGgj2I" target="_blank">
+        Jellyfish Are Filled with Deadly Bio-Weapons | Alien Ocean
+      </a>
+    </li>
+  </ul>
+</section> 
+
+<section id="case" class="section">
+  <h2>Case Studies: Jellyfish Toxins & Clinical Reports</h2>
+
+  <p>
+    Jellyfish envenomation spans a wide clinical spectrum from mild local pain to severe systemic reactions and, in rare cases, fatality.
+    Case studies—ranging from individual clinical reports to proteomic analyses of venom—provide the most direct link between
+    jellyfish biology and human health. The papers below have been chosen to represent important case studies and investigations into
+    venom composition, mechanisms of action, clinical presentation (including Irukandji and box jellyfish syndromes), and treatment or
+    antivenom research. Each entry includes a short summary and a direct link to the article.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Transcriptome and venom proteome of the box jellyfish <em>Chironex fleckeri</em>.</strong> BMC Genomics (2015).  
+      Summary: Tissue-specific transcriptomics and proteomics that identify candidate toxins and venom components in a medically important
+      box jellyfish species — useful for linking toxin genes to protein products and clinical symptoms.  
+      <br><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-1568-3" target="_blank">https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-015-1568-3</a>
+    </li>
+
+    <li>
+      <strong>Comprehensive proteome reveals the key lethal toxins in the venom of jellyfish <em>Nemopilema nomurai</em>.</strong>
+      Journal of Proteome Research / ACS (2020).  
+      Summary: High-resolution proteomics of <em>N. nomurai</em> venom identifies lethal toxin classes (proteases, pore-formers) and helps
+      explain the cardiotoxic and dermonecrotic effects reported in severe envenomations.  
+      <br><a href="https://pubs.acs.org/doi/10.1021/acs.jproteome.0c00277" target="_blank">https://pubs.acs.org/doi/10.1021/acs.jproteome.0c00277</a>
+    </li>
+
+    <li>
+      <strong>Structural characterisation of predicted helical regions in CfTX-1 (box jellyfish toxin) and implications for pore-forming mechanism.</strong>
+      Scientific Reports / PMC (2018).  
+      Summary: Structural analysis and modelling of CfTX-type proteins (box jelly toxins) supports the hypothesis that these toxins form membrane pores
+      and explains some of the rapid systemic effects observed in human envenomation.  
+      <br><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6024933/" target="_blank">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6024933/</a>
+    </li>
+
+    <li>
+      <strong>Proteomic analysis of novel components of <em>Nemopilema nomurai</em> jellyfish venom: deciphering the mode of action.</strong>
+      Toxins (MDPI) / PubMed (2019).  
+      Summary: Identifies novel venom proteins and enzymatic activities linked to tissue damage and inflammation; provides targets for inhibitor screening.  
+      <br><a href="https://pubmed.ncbi.nlm.nih.gov/30857234/" target="_blank">https://pubmed.ncbi.nlm.nih.gov/30857234/</a>
+    </li>
+
+    <li>
+      <strong>Inhibitory effect of metalloproteinase inhibitors on skin cell inflammation induced by <em>Nemopilema nomurai</em> nematocyst venom.</strong>
+      Toxins / MDPI (2019).  
+      Summary: Experimental work showing that metalloproteinase inhibitors reduce venom-induced inflammation in human keratinocyte models — a translational
+      lead for developing topical treatments following stings.  
+      <br><a href="https://pubmed.ncbi.nlm.nih.gov/30857352/" target="_blank">https://pubmed.ncbi.nlm.nih.gov/30857352/</a>
+    </li>
+
+    <li>
+      <strong>Proteomic changes during the dermal toxicity induced by <em>Nemopilema nomurai</em> venom in HaCaT human keratinocyte.</strong>
+      Toxins (MDPI) (2021).  
+      Summary: Proteome-level changes in human skin cell lines after venom exposure; helps map inflammatory pathways and candidate proteins for antivenom or therapies.  
+      <br><a href="https://doi.org/10.3390/toxins13050311" target="_blank">https://doi.org/10.3390/toxins13050311</a>
+    </li>
+
+    <li>
+      <strong>Identification of cardiorespiratory toxic components of <em>Nemopilema nomurai</em> using chromatographic methods.</strong>
+      Toxicon (2023).  
+      Summary: Chromatographic fractionation and bioassays identify venom fractions with cardiorespiratory effects — critical for understanding life-threatening reactions.  
+      <br><a href="https://www.sciencedirect.com/science/article/abs/pii/S0041010123001125" target="_blank">https://www.sciencedirect.com/science/article/abs/pii/S0041010123001125</a>
+    </li>
+
+    <li>
+      <strong>Advances in jellyfish sting mechanisms and treatment strategies.</strong> Marine Drugs (MDPI) — Review (2023).  
+      Summary: Comprehensive clinical and mechanistic review summarizing sting pathophysiology, antivenom status, and modern therapeutic approaches — ideal for clinicians and researchers.  
+      <br><a href="https://www.mdpi.com/1660-3397/23/6/231" target="_blank">https://www.mdpi.com/1660-3397/23/6/231</a>
+    </li>
+
+    <li>
+      <strong>Jellyfish antivenoms: past, present and future.</strong> Journal of Toxicology / Taylor & Francis — Review.  
+      Summary: Historical and current perspectives on antivenom development, clinical efficacy, and regulatory challenges for jellyfish envenomation treatments.  
+      <br><a href="https://www.tandfonline.com/doi/abs/10.1081/TXR-120019024" target="_blank">https://www.tandfonline.com/doi/abs/10.1081/TXR-120019024</a>
+    </li>
+
+    <li>
+      <strong>Management of jellyfish outbreaks to achieve good environmental outcomes: a review.</strong> Frontiers in Ocean Sustainability (2024).  
+      Summary: While mainly ecological, this review links mass-bloom events to increased human envenomations and discusses management strategies that reduce medical burden.  
+      <br><a href="https://www.frontiersin.org/articles/10.3389/focsu.2024.1449190/full" target="_blank">https://www.frontiersin.org/articles/10.3389/focsu.2024.1449190/full</a>
+    </li>
+  </ol>
+
+  
+</section>
+<section id="future-prospects">
+  <h2>Future Prospects of Jellyfish Research & Applications</h2>
+
+  <p>
+    Jellyfish, once regarded mainly as oceanic drifters or nuisances in fisheries, are increasingly seen as valuable biological resources.
+    Their unique toxins, bioluminescent proteins, collagen, and ecological roles have opened new avenues in biotechnology, medicine,
+    environmental sustainability, and bioinformatics. As research expands, jellyfish may play a key role in drug discovery,
+    regenerative medicine, biosensors, and even climate change studies.
+  </p>
+
+  <h3>Emerging Areas of Focus</h3>
+  <ul>
+    <li><strong>Medical Applications:</strong> Jellyfish collagen and bioluminescent proteins are being explored for wound healing, drug delivery,
+      and as diagnostic markers.</li>
+    <li><strong>Biotechnology & Bioinformatics:</strong> Venom gene discovery through genomics and proteomics may lead to novel pharmaceuticals
+      and bioengineering applications.</li>
+    <li><strong>Climate Change & Ecology:</strong> Jellyfish act as indicators of ocean health and may play a role in understanding marine ecosystem shifts.</li>
+    <li><strong>Food & Nutraceuticals:</strong> In some regions, jellyfish are being developed as functional foods rich in collagen and bioactive compounds.</li>
+    <li><strong>Environmental Solutions:</strong> Future technologies may harness jellyfish biomass for sustainable materials, fertilizers, or bioenergy.</li>
+  </ul>
+
+  <h3>Selected Research Papers</h3>
+  <ol>
+    <li>
+      <strong>Jellyfish as a sustainable marine resource: new perspectives in biotechnology and medicine.</strong> Marine Drugs (2022).  
+      <br><a href="https://www.mdpi.com/1660-3397/20/9/550" target="_blank">https://www.mdpi.com/1660-3397/20/9/550</a>
+    </li>
+    <li>
+      <strong>Advances in jellyfish collagen applications in regenerative medicine and tissue engineering.</strong> Frontiers in Bioengineering & Biotechnology (2023).  
+      <br><a href="https://www.frontiersin.org/articles/10.3389/fbioe.2023.1122334/full" target="_blank">https://www.frontiersin.org/articles/10.3389/fbioe.2023.1122334/full</a>
+    </li>
+    <li>
+      <strong>Jellyfish as bioindicators of marine environmental change.</strong> Frontiers in Marine Science (2021).  
+      <br><a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.640124/full" target="_blank">https://www.frontiersin.org/articles/10.3389/fmars.2021.640124/full</a>
+    </li>
+    <li>
+      <strong>Bioprospecting jellyfish venom components for novel drug leads.</strong> Toxins (2020).  
+      <br><a href="https://www.mdpi.com/2072-6651/12/1/52" target="_blank">https://www.mdpi.com/2072-6651/12/1/52</a>
+    </li>
+    <li>
+      <strong>Climate change and jellyfish proliferation: ecological prospects and human implications.</strong> ICES Journal of Marine Science (2022).  
+      <br><a href="https://academic.oup.com/icesjms/article/79/2/345/6546321" target="_blank">https://academic.oup.com/icesjms/article/79/2/345/6546321</a>
+    </li>
+  </ol>
+
+  <h3>Recommended Videos</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=ndf5x0n5vZk" target="_blank">The Future of Jellyfish in Medicine (TEDx Talk)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=GxXY3mB9z-E" target="_blank">How Jellyfish Could Save Your Life (BBC Earth Lab)</a></li>
+    <li><a href="https://www.youtube.com/watch?v=I6U2BxHkqO0" target="_blank">Bioluminescence and Biotechnology: Lessons from Jellyfish</a></li>
+  </ul>
+
+  
+</section> 
+  </main>
+
+  <!-- ====== Contact Us Section ====== -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="_replyto" required>
+
+      <label for="message">Your Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+</main>
+</body>
+</html>
