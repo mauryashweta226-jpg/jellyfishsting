@@ -1198,42 +1198,7 @@ document.querySelectorAll(".typing").forEach(el => {
   });
 });
 </script>
-<!-- 1. Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- 2. Add a chart section -->
-
-  <!-- Chart area -->
-  <canvas id="jellyfishChart" width="400" height="200"></canvas>
-</section>
-
-<!-- 3. Add chart script -->
-<script>
-  const ctx = document.getElementById('jellyfishChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Atlantic', 'Pacific', 'Indian', 'Arctic', 'Southern'],
-      datasets: [{
-        label: 'Jellyfish Species Distribution',
-        data: [500, 800, 400, 100, 200],
-        backgroundColor: 'rgba(0, 234, 255, 0.6)',
-        borderColor: '#00eaff',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { labels: { color: '#fff' } }
-      },
-      scales: {
-        x: { ticks: { color: '#fff' } },
-        y: { ticks: { color: '#fff' } }
-      }
-    }
-  });
-</script>
 <script>
   const ctx = document.getElementById('popChart').getContext('2d');
   new Chart(ctx, {
