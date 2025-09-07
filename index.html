@@ -185,12 +185,41 @@
     <img class="hero-gif"
          src="https://i.gifer.com/1AkP.gif"
          alt="jellyfish gif from gifer" />
-    <div class="hero-content">
-      <h1>Discover the World of Jellyfish</h1>
-      <p>"Where Oceans Glow with Life"</p>
-      <a class="cta" href="#about">Start Exploring ↓</a>
-    </div>
-  </section>
+    <div class="overlay">
+    <h1>Discover the World of Jellyfish</h1>
+    <p>"Where Oceans Glow with Life"</p>
+  </div>
+</section>
+
+<style>
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('jellyfish.gif') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.hero .overlay {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 15px;
+}
+.hero h1 {
+  font-size: 3rem;
+  color: #fff;
+  animation: float 3s ease-in-out infinite;
+}
+.hero p {
+  color: #ddd;
+  font-size: 1.2rem;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+</style>
   <main>
   <section id="about">
   <h2>About Jellyfish</h2>
@@ -602,7 +631,7 @@
     prediction (signal peptides, secretory protein filters), (4) venom proteomics (LC–MS/MS) to validate secreted toxins, (5) structural prediction and 
     in silico docking for candidate inhibitors, and (6) comparative genomics / phylogenetics to place novel toxins in an evolutionary framework. 
     This integrative pipeline enables studies that directly inform medical responses to stings, antivenom design, and the discovery of bioactive molecules 
-    with therapeutic potential. 10
+    with therapeutic potential. 
   </p>
 
   <h3>References: Research Papers</h3>
