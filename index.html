@@ -1098,6 +1098,7 @@ new Chart(ctx, {
 
 </main>
 <script>
+  document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll(".typing").forEach(el => {
   let text = el.getAttribute("data-text");
   let i = 0;
@@ -1112,7 +1113,8 @@ document.querySelectorAll(".typing").forEach(el => {
     }
   }
   typeWriter();
-});
+  });
+  });
 </script>
 </body>
 </html>
