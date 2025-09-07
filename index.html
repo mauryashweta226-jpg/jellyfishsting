@@ -208,20 +208,24 @@
 }
 .hero h1 {
   font-size: 3rem;
-  color: #db8d8d; /* pure white */
-  text-shadow: 0 0 10px #0059ff, 0 0 20px #5900ff; /* glowing effect */
-  animation: float 3s ease-in-out infinite;
+  color: #fff;
+  animation: float 3s ease-in-out infinite, glowColors 6s infinite alternate;
+  text-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff;
 }
 
 .hero p {
-  color: #ffffff; /* pure white */
   font-size: 1.4rem;
-  text-shadow: 0 0 6px #00eaff, 0 0 12px #00eaff;
+  color: #fff;
+  animation: glowColors 6s infinite alternate;
+  text-shadow: 0 0 8px #00eaff, 0 0 16px #00eaff;
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+
+@keyframes glowColors {
+  0% { text-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff; color: #00eaff; }
+  50% { text-shadow: 0 0 15px #bb86fc, 0 0 30px #bb86fc; color: #bb86fc; }
+  100% { text-shadow: 0 0 15px #ff4fd8, 0 0 30px #ff4fd8; color: #ff4fd8; }
 }
+
 </style>
   <main>
   <section id="about">
