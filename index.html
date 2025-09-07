@@ -279,6 +279,66 @@ height: 100vh;  /* make hero take full screen */
 
 <section id="biology">
   <h2>Biology & Anatomy of Jellyfish</h2>
+   <div class="card-container">
+    <div class="card">
+      <img src="jelly1.jpg" alt="Jellyfish Anatomy">
+      <h3>Biology & Anatomy</h3>
+      <p>Jellyfish are 95% water with fascinating structures...</p>
+    </div>
+
+    <div class="card">
+      <img src="jelly2.jpg" alt="Jellyfish Types">
+      <h3>Types of Jellyfish</h3>
+      <p>There are thousands of jellyfish species, ranging from tiny to giant...</p>
+    </div>
+
+    <div class="card">
+      <img src="jelly3.jpg" alt="Jellyfish Ecology">
+      <h3>Ecology & Environment</h3>
+      <p>Jellyfish play vital roles in marine ecosystems worldwide...</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* === Card Container === */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  gap: 20px;
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* === Individual Card === */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+.card h3 {
+  margin: 10px 0;
+  color: #0d335d; /* ocean blue heading */
+}
+.card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+</style>
 
   <p>
     Jellyfish possess one of the simplest yet most efficient body structures in the animal kingdom. 
