@@ -305,39 +305,31 @@
   <main>
   <section id="about" >
     <h2 class="typing">About Jellyfish</h2>
-
-<style>
-/* Container for demo (optional) */
-body {
-  background: #000; /* dark background so text shows */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Typing effect */
+    <style>
 .typing {
   display: inline-block;          /* allow width animation */
-  overflow: hidden;               /* hide overflow text */
-  white-space: nowrap;            /* keep on one line */
-  border-right: 3px solid #0ff;  /* blinking cursor */
-  font-size: 2.5rem;
-  color: rgb(69, 184, 184);                    /* bright cyan for visibility */
-  width: 0ch;                     /* start width */
+  overflow: hidden;               /* hide text overflow */
+  white-space: nowrap;            /* keep text on one line */
+  border-right: 3px solid #fff;  /* cursor */
+  width: 0ch;                     /* start from 0 characters */
   animation: typing 2s steps(15, end) forwards, blink 0.6s step-end infinite;
+  color: #fff;
+  font-size: 2rem;
 }
 
+/* typing animation */
 @keyframes typing {
   from { width: 0ch; }
   to { width: 15ch; } /* number of characters in "About Jellyfish" */
 }
 
+/* blinking cursor */
 @keyframes blink {
   50% { border-color: transparent; }
 }
 </style>
-  
+
+
   <p>
     Jellyfish are among the oldest and most fascinating creatures on Earth, having drifted through the 
     oceans for more than 500 million years—long before the dinosaurs appeared. Belonging to the phylum 
