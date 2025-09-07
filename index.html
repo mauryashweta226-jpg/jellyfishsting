@@ -310,7 +310,7 @@
   display: inline-block;          /* allow width animation */
   overflow: hidden;               /* hide text overflow */
   white-space: nowrap;            /* keep text on one line */
-  border-right: 3px solid #d44d4d;  /* cursor */
+  border-right: 3px solid #f8f4f4;  /* cursor */
   width: 0ch;                     /* start from 0 characters */
   animation: typing 2s steps(15, end) forwards, blink 0.6s step-end infinite;
   color: #1f10ee;
@@ -398,7 +398,7 @@ new Chart(ctx, {
   display: inline-block;          /* allow width animation */
   overflow: hidden;               /* hide text overflow */
   white-space: nowrap;            /* keep text on one line */
-  border-right: 3px solid #d44d4d;  /* cursor */
+  border-right: 3px solid #f8f8f8;  /* cursor */
   width: 0ch;                     /* start from 0 characters */
   animation: typing 2s steps(15, end) forwards, blink 0.6s step-end infinite;
   color: #2b0ae2;
@@ -408,7 +408,7 @@ new Chart(ctx, {
 /* typing animation */
 @keyframes typing {
   from { width: 0ch; }
-  to { width: 31ch; } /* number of characters in "Biology & Anatomy of Jellyfish" */
+  to { width: 31och; } /* number of characters in "Biology & Anatomy of Jellyfish" */
 }
 
 /* blinking cursor */
@@ -489,7 +489,31 @@ new Chart(ctx, {
 </section>
     
 <section id="types">
-  <h2>Types of Jellyfish</h2>
+  <h2 class="typing">Types of Jellyfish</h2>
+
+    <style>
+.typing {
+  display: inline-block;          /* allow width animation */
+  overflow: hidden;               /* hide text overflow */
+  white-space: nowrap;            /* keep text on one line */
+  border-right: 3px solid #ffffff;  /* cursor */
+  width: 0ch;                     /* start from 0 characters */
+  animation: typing 2s steps(15, end) forwards, blink 0.6s step-end infinite;
+  color: #2b0ae2;
+  font-size: 2rem;
+}
+
+/* typing animation */
+@keyframes typing {
+  from { width: 0ch; }
+  to { width: 18och; } /* number of characters in "Types of Jellyfish" */
+}
+
+/* blinking cursor */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+</style>
 
   <p>
     Jellyfish are an incredibly diverse group of organisms that belong to the phylum Cnidaria and the class 
