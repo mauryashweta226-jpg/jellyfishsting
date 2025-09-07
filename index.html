@@ -1105,7 +1105,8 @@ document.querySelectorAll(".typing").forEach(el => {
 
   function typeWriter() {
     if (i <= text.length) {
-      el.style.width = i + "ch";
+      el.textContent = text.substring(0,
+        i)
       i++;
       setTimeout(typeWriter, speed);
     }
