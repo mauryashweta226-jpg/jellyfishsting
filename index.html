@@ -1127,5 +1127,40 @@ document.querySelectorAll(".typing").forEach(el => {
   });
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('popChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Pacific', 'Atlantic', 'Indian', 'Arctic', 'Southern'],
+      datasets: [{
+        label: 'Abundance Index',
+        data: [120, 95, 70, 15, 40],
+        backgroundColor: [
+          'rgba(0,191,255,0.7)',
+          'rgba(123,104,238,0.7)',
+          'rgba(0,255,127,0.7)',
+          'rgba(30,144,255,0.7)',
+          'rgba(138,43,226,0.7)'
+        ],
+        borderRadius: 6,
+        barPercentage: 0.6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#cfeefe' } },
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#cfeefe' },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>
