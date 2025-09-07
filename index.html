@@ -307,19 +307,30 @@
     <h2 class="typing">About Jellyfish</h2>
 
 <style>
+/* Container for demo (optional) */
+body {
+  background: #000; /* dark background so text shows */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Typing effect */
 .typing {
-  display: inline-block;       /* allow width animation */
-  overflow: hidden;            /* hide text outside width */
-  white-space: nowrap;          /* keep text in one line */
-  border-right: 3px solid #db3d0d; /* cursor */
-  width: 0och;                     /* start from 0 */
+  display: inline-block;          /* allow width animation */
+  overflow: hidden;               /* hide overflow text */
+  white-space: nowrap;            /* keep on one line */
+  border-right: 3px solid #0ff;  /* blinking cursor */
+  font-size: 2.5rem;
+  color: #0ff;                    /* bright cyan for visibility */
+  width: 0ch;                     /* start width */
   animation: typing 2s steps(15, end) forwards, blink 0.6s step-end infinite;
-  color: #e62323;                  /* optional: text color */
 }
 
 @keyframes typing {
-  from { width: 0och; }
-  to { width: 15och; }
+  from { width: 0ch; }
+  to { width: 15ch; } /* number of characters in "About Jellyfish" */
 }
 
 @keyframes blink {
