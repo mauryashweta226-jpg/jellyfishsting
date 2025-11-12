@@ -2589,3 +2589,104 @@ body {
     0%, 100% { transform: translateX(-50%) rotate(0deg) skewX(0deg); }
     50% { transform: translateX(-50%) rotate(0deg) skewX(10deg); }
 }
+
+/* Image & Link Enhancements (added) */
+/* Generic responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.35);
+    transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+}
+
+img:hover {
+    transform: translateY(-4px) scale(1.02);
+    filter: saturate(1.05) contrast(1.02);
+    box-shadow: 0 22px 50px rgba(2,6,23,0.45);
+}
+
+/* Figure caption styling for illustrations */
+.figure {
+    text-align: center;
+    margin: 1rem 0;
+}
+.figure figcaption {
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.6);
+    margin-top: 0.5rem;
+}
+
+/* References block styling */
+.references {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(250,255,252,0.8), rgba(240,248,255,0.6));
+    border: 1px solid rgba(0, 172, 193, 0.12);
+}
+.refs-grid {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.refs-column {
+    flex: 1 1 240px;
+    min-width: 220px;
+}
+.refs-column h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+.refs-column ul {
+    list-style: none;
+    padding-left: 0;
+}
+.refs-column li {
+    margin-bottom: 0.45rem;
+}
+.references a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+.references a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-shadow: 0 6px 18px rgba(100,255,218,0.14);
+    transform: translateX(4px);
+}
+
+/* Make publication cards' links stand out */
+.publication-card a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(0,0,0,0.05);
+}
+.publication-card a:hover {
+    color: var(--accent-color);
+    border-bottom-style: solid;
+}
+
+/* Decorative image overlay for species preview backgrounds (keeps existing gradient but adds glow) */
+.species-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(100,255,218,0.06), transparent 40%);
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    opacity: 0.9;
+}
+.species-card:hover .species-image::after {
+    opacity: 1;
+    filter: blur(2px) saturate(1.1);
+}
+
+/* Small responsive tweaks for references on narrow screens */
+@media (max-width: 768px) {
+    .refs-grid { flex-direction: column; }
+    .refs-column { min-width: 100%; }
+}
