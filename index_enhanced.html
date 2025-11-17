@@ -44,11 +44,15 @@
             <div class="bubble interactive" onclick="popBubble(this)"></div>
         </div>
         
-        <!-- Particle System -->
         <div class="particles-container" id="particles"></div>
-        
-        <!-- Custom Cursor -->
         <div class="custom-cursor" id="cursor"></div>
+        
+        <div class="hero-jellyfish-bg">
+            <img src="./jellyfish1.jpg" alt="Orange Jellyfish" class="floating-jelly jelly-1">
+            <img src="./jellyfish2.jpg" alt="Moon Jellies" class="floating-jelly jelly-2">
+            <img src="./jellyfish3.jpg" alt="Beige Jellyfish" class="floating-jelly jelly-3">
+        </div>
+        
         <div class="hero-content">
             <h1 class="hero-title">Exploring the Genomic Mysteries of Jellyfish</h1>
             <p class="hero-subtitle">Unlocking the secrets of cnidarian evolution through cutting-edge bioinformatics</p>
@@ -64,62 +68,60 @@
         <div class="container">
             <h2 class="section-title">About Jellyfish</h2>
             <div class="about-grid">
-                <div class="about-card interactive" onclick="showDetailedInfo('ancient')" data-info="ancient">
+                <div class="about-card interactive" onclick="showDetailedInfo('ancient')">
                     <div class="card-icon">🧬</div>
                     <h3>Ancient Survivors</h3>
-                    <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees. Their simple yet effective design has allowed them to survive multiple mass extinctions.</p>
+                    <p>Jellyfish have existed for over 500 million years, predating dinosaurs and even trees.</p>
                     <div class="card-stats">
                         <span class="stat-chip">500M+ years</span>
                         <span class="stat-chip">5 extinctions survived</span>
                     </div>
                     <button class="learn-more-btn">🔬 Deep Dive Research</button>
                 </div>
-                <div class="about-card interactive" onclick="showDetailedInfo('water')" data-info="water">
+                <div class="about-card interactive" onclick="showDetailedInfo('water')">
                     <div class="card-icon">💧</div>
                     <h3>95% Water Composition</h3>
-                    <p>Despite being mostly water, jellyfish possess complex nervous systems and sophisticated hunting mechanisms, making them fascinating subjects for genomic research.</p>
+                    <p>Despite being mostly water, jellyfish possess complex nervous systems and sophisticated hunting mechanisms.</p>
                     <div class="card-stats">
                         <span class="stat-chip">95% H₂O</span>
                         <span class="stat-chip">No brain needed</span>
                     </div>
                     <button class="learn-more-btn">💧 Explore Hydrobiology</button>
                 </div>
-                <div class="about-card interactive" onclick="showDetailedInfo('bioluminescence')" data-info="bioluminescence">
+                <div class="about-card interactive" onclick="showDetailedInfo('bioluminescence')">
                     <div class="card-icon">✨</div>
                     <h3>Bioluminescence Magic</h3>
-                    <p>Many jellyfish species can produce their own light through bioluminescence, a trait that has revolutionized medical research and biotechnology.</p>
+                    <p>Many jellyfish species can produce their own light through bioluminescence.</p>
                     <div class="card-stats">
                         <span class="stat-chip">80% species glow</span>
                         <span class="stat-chip">Nobel Prize tech</span>
                     </div>
                     <button class="learn-more-btn">✨ Light Science</button>
                 </div>
-                
-                <!-- New Interactive Knowledge Cards -->
-                <div class="about-card interactive" onclick="showDetailedInfo('reproduction')" data-info="reproduction">
+                <div class="about-card interactive" onclick="showDetailedInfo('reproduction')">
                     <div class="card-icon">🔄</div>
                     <h3>Alien Reproduction</h3>
-                    <p>Jellyfish have the most complex lifecycle in the animal kingdom, alternating between polyp and medusa stages in ways that seem almost alien.</p>
+                    <p>Jellyfish have the most complex lifecycle in the animal kingdom.</p>
                     <div class="card-stats">
                         <span class="stat-chip">2-stage lifecycle</span>
                         <span class="stat-chip">Cloning ability</span>
                     </div>
                     <button class="learn-more-btn">🔄 Lifecycle Secrets</button>
                 </div>
-                <div class="about-card interactive" onclick="showDetailedInfo('intelligence')" data-info="intelligence">
+                <div class="about-card interactive" onclick="showDetailedInfo('intelligence')">
                     <div class="card-icon">🧠</div>
                     <h3>Brainless Intelligence</h3>
-                    <p>Without a central brain, jellyfish demonstrate learning, memory, and complex behaviors through their distributed nervous system.</p>
+                    <p>Without a central brain, jellyfish demonstrate learning and memory.</p>
                     <div class="card-stats">
                         <span class="stat-chip">0 brain cells</span>
                         <span class="stat-chip">Can learn</span>
                     </div>
                     <button class="learn-more-btn">🧠 Neural Networks</button>
                 </div>
-                <div class="about-card interactive" onclick="showDetailedInfo('extremophiles')" data-info="extremophiles">
+                <div class="about-card interactive" onclick="showDetailedInfo('extremophiles')">
                     <div class="card-icon">🌡</div>
                     <h3>Extreme Survivors</h3>
-                    <p>Some jellyfish survive in extreme conditions: Arctic ice, boiling vents, highly acidic waters, and even outer space experiments.</p>
+                    <p>Some jellyfish survive in extreme conditions from Arctic ice to boiling vents.</p>
                     <div class="card-stats">
                         <span class="stat-chip">-40°C to 40°C</span>
                         <span class="stat-chip">Space tested</span>
@@ -128,7 +130,6 @@
                 </div>
             </div>
             
-            <!-- Interactive Knowledge Quiz -->
             <div class="knowledge-quiz" id="jellyfishQuiz">
                 <h3>🧠 Test Your Jellyfish Knowledge!</h3>
                 <div class="quiz-question" id="quizQuestion">
@@ -142,160 +143,36 @@
                 </div>
                 <div class="quiz-score">Score: <span id="quizScore">0</span>/10</div>
             </div>
-            <!-- References / Further Reading (Library + Case Study) -->
-            <div class="references" id="references">
-                <h3>References & Further Reading</h3>
-                <div class="refs-grid">
-                    <div class="refs-column">
-                        <h4>Library — Part 1</h4>
-                        <ul>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8773148/" target="_blank" rel="noopener">PMC8773148</a></li>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7600780/" target="_blank" rel="noopener">PMC7600780</a></li>
-                        </ul>
 
-                        <h4>Library — Part 2</h4>
-                        <ul>
-                            <li><a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank" rel="noopener">Nature Ecology & Evolution (s41559-018-0719-8)</a></li>
-                            <li><a href="https://elifesciences.org/articles/50084" target="_blank" rel="noopener">eLife (50084)</a></li>
-                        </ul>
-
-                        <h4>Library — Part 3</h4>
-                        <ul>
-                            <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC165563/" target="_blank" rel="noopener">PMC165563</a></li>
-                            <li><a href="https://academic.oup.com/icb/article/65/3/713/8082139" target="_blank" rel="noopener">Integrative and Comparative Biology (OUP)</a></li>
-                        </ul>
-
-                        <h4>Library — Part 4</h4>
-                        <ul>
-                            <li><a href="https://www.pnas.org/doi/10.1073/pnas.1210920110" target="_blank" rel="noopener">PNAS (doi:10.1073/pnas.1210920110)</a></li>
-                            <li><a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2024.1349956/full" target="_blank" rel="noopener">Frontiers in Marine Science (2024.1349956)</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="refs-column">
-                        <h4>Library — Part 5</h4>
-                        <ul>
-                            <li><a href="https://www.sciencedirect.com/science/article/pii/S1470160X24001603" target="_blank" rel="noopener">ScienceDirect (S1470160X24001603)</a></li>
-                        </ul>
-
-                        <h4>Library — Part 6</h4>
-                        <ul>
-                            <li><a href="https://www.mbari.org/deep-sea-jellyfish-fascinating-and-surprising/" target="_blank" rel="noopener">MBARI — Deep-sea jellyfish: fascinating and surprising</a></li>
-                        </ul>
-
-                        <h4>Library — Part 7</h4>
-                        <ul>
-                            <li><a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.629105/full" target="_blank" rel="noopener">Frontiers in Marine Science (2021.629105)</a></li>
-                        </ul>
-
-                        <h4>Library — Part 8</h4>
-                        <ul>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11027287/" target="_blank" rel="noopener">PMC11027287</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="refs-column">
-                        <h4>Library — Part 9</h4>
-                        <ul>
-                            <li><a href="https://www.sciencedirect.com/science/article/pii/S2468013323000171" target="_blank" rel="noopener">ScienceDirect (S2468013323000171)</a></li>
-                        </ul>
-
-                        <h4>Library — Part 10</h4>
-                        <ul>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7535813/" target="_blank" rel="noopener">PMC7535813</a></li>
-                        </ul>
-
-                        <h4>Library — Part 11</h4>
-                        <ul>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8242622/" target="_blank" rel="noopener">PMC8242622</a></li>
-                        </ul>
-
-                        <h4>Library — Part 12</h4>
-                        <ul>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3058326/" target="_blank" rel="noopener">PMC3058326</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="refs-column">
-                        <h4>Case Study — GFP (Part 1)</h4>
-                        <ul>
-                            <li><a href="https://www.nobelprize.org/prizes/chemistry/2008/shimomura/lecture/" target="_blank" rel="noopener">Shimomura Nobel Lecture (2008)</a></li>
-                            <li><a href="https://press.asimov.com/brief-history-of-gfp" target="_blank" rel="noopener">A brief history of GFP (press.asimov)</a></li>
-                        </ul>
-
-                        <h4>Case Study — GFP (Part 2)</h4>
-                        <ul>
-                            <li><a href="https://www.pnas.org/doi/10.1073/pnas.0801506105" target="_blank" rel="noopener">PNAS (doi:10.1073/pnas.0801506105)</a></li>
-                            <li><a href="https://explorebiology.org/science-of-gfp-expression-overview/" target="_blank" rel="noopener">Science of GFP expression (explorebiology)</a></li>
-                        </ul>
-
-                        <h4>Case Study — GFP (Part 3)</h4>
-                        <ul>
-                            <li><a href="https://en.wikipedia.org/wiki/Roger_Y._Tsien" target="_blank" rel="noopener">Roger Y. Tsien — Wikipedia</a></li>
-                            <li><a href="https://www.ibiology.org/proteins-and-genes/fluorescent-proteins-gfp/" target="_blank" rel="noopener">iBiology — Fluorescent Proteins / GFP</a></li>
-                        </ul>
-
-                        <h4>Case Study — GFP (Part 4)</h4>
-                        <ul>
-                            <li><a href="https://www.nobelprize.org/prizes/chemistry/2008/summary/" target="_blank" rel="noopener">Nobel Prize — Chemistry 2008 (summary)</a></li>
-                            <li><a href="https://pubs.rsc.org/en/content/articlelanding/2009/cs/b904023d" target="_blank" rel="noopener">RSC Chemical Science article (2009)</a></li>
-                        </ul>
-
-                        <h4>Case Study — GFP (Part 5)</h4>
-                        <ul>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383682/" target="_blank" rel="noopener">PMC4383682</a></li>
-                            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10715410/" target="_blank" rel="noopener">PMC10715410</a></li>
-                        </ul>
-                    </div>
+            <div class="section-references">
+                <h3>📚 Research References</h3>
+                <div class="ref-grid">
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3058326" target="_blank" class="research-link">PMC: Jellyfish Evolution</a>
+                    <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank" class="research-link">Nature: Aurelia Genome</a>
+                    <a href="https://elifesciences.org/articles/50084" target="_blank" class="research-link">eLife: Development</a>
                 </div>
             </div>
-        
-
-        <div class="section-references">
-            <h3>📚 Research References</h3>
-            <div class="ref-grid">
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3058326" target="_blank" class="research-link">PMC: Jellyfish Evolution</a>
-                <a href="https://royalsocietypublishing.org/doi/10.1098/rstb.2015.0054" target="_blank" class="research-link">Royal Society: Cnidarian Biology</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10113191/" target="_blank" class="research-link">PMC: Ancient Organisms</a>
-                <a href="https://people.ucsc.edu/~mlclapham/clapham_activity_levels.pdf" target="_blank" class="research-link">UCSC: Activity Levels</a>
-                <a href="https://www.pnas.org/doi/10.1073/pnas.2213148120" target="_blank" class="research-link">PNAS: Neural Systems</a>
-                <a href="https://www.studocu.com/row/document/maasai-mara-university/biology-form-one-notes/discuss-hydrostatic-locomotion-in-cnidarians/72784638" target="_blank" class="research-link">Hydrostatic Locomotion</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11027287/" target="_blank" class="research-link">PMC: Bioluminescence</a>
-                <a href="https://www.nature.com/articles/s41467-022-29882-0" target="_blank" class="research-link">Nature: Cnidarian Research</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10757909/" target="_blank" class="research-link">PMC: Lifecycle Studies</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11117550/" target="_blank" class="research-link">PMC: Development</a>
-                <a href="https://www.frontiersin.org/articles/10.3389/fmars.2023.1111229/full" target="_blank" class="research-link">Frontiers: Marine Science</a>
-                <a href="https://academic.oup.com/book/6661/chapter/150355177" target="_blank" class="research-link">OUP: Jellyfish Biology</a>
-                <a href="https://www.frontiersin.org/articles/10.3389/fevo.2024.1312315/full" target="_blank" class="research-link">Frontiers: Evolution</a>
-                <a href="https://www.nature.com/articles/s41586-025-06628-5" target="_blank" class="research-link">Nature: Recent Discoveries</a>
-                <a href="https://ssrn.com/abstract=4982884" target="_blank" class="research-link">SSRN: Extremophiles</a>
-                <a href="https://astrobiology.com/2024/10/advances-in-extremophile-research-biotechnological-applications.html" target="_blank" class="research-link">Astrobiology: Biotech</a>
-                <a href="https://astrobiology.com/2024/07/extremophiles-in-a-changing-world.html" target="_blank" class="research-link">Astrobiology: Climate</a>
-            </div>
         </div>
-    
-</div>
     </section>
 
-    <!-- Biology & Anatomy Section -->
+    <!-- Biology Section -->
     <section id="biology" class="section dark-section">
         <div class="container">
             <h2 class="section-title">Biology & Anatomy</h2>
             <div class="anatomy-showcase">
                 <div class="anatomy-visual">
                     <div class="jellyfish-diagram" onclick="toggleAnatomyMode()">
-                        <div class="anatomy-part bell" data-info="Bell: The umbrella-shaped body that propels the jellyfish through muscular contractions">
+                        <div class="anatomy-part bell">
                             <span class="tooltip">🫧 Bell (Mesoglea-filled)</span>
                         </div>
-                        <div class="anatomy-part tentacles" data-info="Tentacles: Armed with cnidocytes containing stinging nematocysts for prey capture">
+                        <div class="anatomy-part tentacles">
                             <span class="tooltip">⚡ Tentacles (Cnidocytes)</span>
                         </div>
-                        <div class="anatomy-part oral-arms" data-info="Oral Arms: Help in capturing and consuming prey, contain digestive enzymes">
+                        <div class="anatomy-part oral-arms">
                             <span class="tooltip">🍽 Oral Arms</span>
                         </div>
                     </div>
                     
-                    <!-- Interactive 3D Jellyfish -->
                     <div class="jellyfish-3d" onclick="pulse3DJellyfish()">
                         <div class="jellyfish-body">
                             <div class="bell-3d"></div>
@@ -333,49 +210,53 @@
         <div class="container">
             <h2 class="section-title">Jellyfish Species</h2>
             <div class="species-grid">
-                <div class="species-card interactive" data-species="aurelia" onclick="showSpeciesDetails('aurelia')">
-                    <div class="species-image aurelia-img">
+                <div class="species-card interactive" onclick="showSpeciesDetails('aurelia')">
+                    <div class="species-image">
+                        <img src="./jellyfish1.jpg" alt="Aurelia aurita - Moon Jellyfish" class="species-img">
                         <div class="genome-badge">🧬 Genome: 369Mb</div>
                     </div>
                     <h3>Aurelia aurita</h3>
                     <p class="species-name">Moon Jellyfish 🌙</p>
-                    <p>The most studied jellyfish species with a fully sequenced genome revealing insights into nervous system evolution.</p>
+                    <p>The most studied jellyfish species with a fully sequenced genome.</p>
                     <div class="species-stats">
                         <span class="stat">🔬 Model Organism</span>
                         <span class="stat">🧠 18K Genes</span>
                     </div>
                 </div>
-                <div class="species-card interactive" data-species="nemopilema" onclick="showSpeciesDetails('nemopilema')">
-                    <div class="species-image nemopilema-img">
+                <div class="species-card interactive" onclick="showSpeciesDetails('nemopilema')">
+                    <div class="species-image">
+                        <img src="./Nemopilema.jpg" alt="Nemopilema nomurai - Nomura's Jellyfish" class="species-img">
                         <div class="genome-badge">🧬 Genome: 156Mb</div>
                     </div>
                     <h3>Nemopilema nomurai</h3>
                     <p class="species-name">Nomura's Jellyfish 🦑</p>
-                    <p>Giant jellyfish whose genome provides crucial insights into cnidocyte development and toxin production.</p>
+                    <p>Giant jellyfish whose genome provides crucial insights into toxin production.</p>
                     <div class="species-stats">
                         <span class="stat">⚡ Stinging Cells</span>
-                        <span class="stat">🐙 2m Diameter</span>
+                        <span class="stat">🙌 2m Diameter</span>
                     </div>
                 </div>
-                <div class="species-card interactive" data-species="atolla" onclick="showSpeciesDetails('atolla')">
-                    <div class="species-image atolla-img">
+                <div class="species-card interactive" onclick="showSpeciesDetails('atolla')">
+                    <div class="species-image">
+                        <img src="./Atolla.jpg" alt="Atolla wyvillei - Deep Sea Jellyfish" class="species-img">
                         <div class="genome-badge">🧬 Genome: Partial</div>
                     </div>
                     <h3>Atolla wyvillei</h3>
                     <p class="species-name">Atolla Jellyfish 🌊</p>
-                    <p>Deep-sea species famous for its "burglar alarm" bioluminescence defense mechanism.</p>
+                    <p>Deep-sea species famous for its "burglar alarm" bioluminescence.</p>
                     <div class="species-stats">
                         <span class="stat">💡 Bioluminescent</span>
                         <span class="stat">🌊 Deep Sea</span>
                     </div>
                 </div>
-                <div class="species-card interactive" data-species="immortal" onclick="showSpeciesDetails('immortal')">
-                    <div class="species-image immortal-img">
+                <div class="species-card interactive" onclick="showSpeciesDetails('immortal')">
+                    <div class="species-image">
+                        <img src="./turoptis.jpg" alt="Turritopsis dohrnii - Immortal Jellyfish" class="species-img">
                         <div class="genome-badge">🧬 Genome: Research</div>
                     </div>
                     <h3>Turritopsis dohrnii</h3>
                     <p class="species-name">Immortal Jellyfish ♾</p>
-                    <p>Can revert to its polyp stage, essentially achieving biological immortality.</p>
+                    <p>Can revert to its polyp stage, achieving biological immortality.</p>
                     <div class="species-stats">
                         <span class="stat">♾ Immortal</span>
                         <span class="stat">🔄 Regenerates</span>
@@ -383,7 +264,6 @@
                 </div>
             </div>
             
-            <!-- Interactive Species Comparison Tool -->
             <div class="species-comparison-tool">
                 <h3>🔬 Interactive Species Comparison</h3>
                 <div class="comparison-controls">
@@ -401,31 +281,22 @@
                         <option value="immortal">Turritopsis dohrnii</option>
                     </select>
                 </div>
-                <div class="comparison-result" id="comparisonResult">
+                <div class="comparison-result">
                     <div class="comparison-grid">
                         <div class="comparison-card" id="comparison1"></div>
                         <div class="comparison-card" id="comparison2"></div>
                     </div>
                 </div>
             </div>
-        
 
-        <div class="section-references">
-            <h3>🧬 Genomics & Research Papers</h3>
-            <div class="ref-grid">
-                <a href="https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7" target="_blank" class="research-link">Nomura's Jellyfish Genome</a>
-                <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank" class="research-link">Moon Jelly Genome</a>
-                <a href="https://www.nature.com/articles/s41559-019-0853-y" target="_blank" class="research-link">Animal Complexity</a>
-                <a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giac036/6586816" target="_blank" class="research-link">Medusozoa Genomics</a>
-                <a href="https://www.mdpi.com/2072-6651/14/8/519" target="_blank" class="research-link">Jellyfish Toxins</a>
-                <a href="https://peerj.com/articles/13361/" target="_blank" class="research-link">PeerJ: Cnidarian Studies</a>
-                <a href="https://www.mdpi.com/1660-3397/16/6/201" target="_blank" class="research-link">Structural Analysis</a>
-                <a href="https://bmcecolevol.biomedcentral.com/articles/10.1186/s12862-018-1142-0" target="_blank" class="research-link">Phylogenomics</a>
-                <a href="https://royalsocietypublishing.org/doi/10.1098/rspb.2023.2626" target="_blank" class="research-link">Bioluminescence Evolution</a>
+            <div class="section-references">
+                <h3>🧬 Genomics Papers</h3>
+                <div class="ref-grid">
+                    <a href="https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7" target="_blank" class="research-link">Nomura Genome</a>
+                    <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank" class="research-link">Moon Jelly Genome</a>
+                </div>
             </div>
         </div>
-    
-</div>
     </section>
 
     <!-- Ecology Section -->
@@ -434,31 +305,28 @@
             <h2 class="section-title">Ecology & Environment</h2>
             <div class="ecology-content">
                 <div class="ecosystem-map">
-                    <div class="depth-zone surface interactive" data-depth="0-200m" onclick="showDepthDetails('surface')">
+                    <div class="depth-zone surface interactive" onclick="showDepthDetails('surface')">
                         <h4>🌞 Epipelagic Zone (0-200m)</h4>
                         <p>Most jellyfish species inhabit this sunlit zone</p>
                         <div class="zone-stats">
                             <span>🌡 15-30°C</span>
                             <span>💡 High light</span>
-                            <span>🐟 Rich biodiversity</span>
                         </div>
                     </div>
-                    <div class="depth-zone twilight interactive" data-depth="200-1000m" onclick="showDepthDetails('twilight')">
+                    <div class="depth-zone twilight interactive" onclick="showDepthDetails('twilight')">
                         <h4>🌅 Mesopelagic Zone (200-1000m)</h4>
                         <p>Bioluminescent species dominate</p>
                         <div class="zone-stats">
                             <span>🌡 5-15°C</span>
                             <span>✨ Twilight zone</span>
-                            <span>🔬 80% bioluminescent</span>
                         </div>
                     </div>
-                    <div class="depth-zone deep interactive" data-depth="1000m+" onclick="showDepthDetails('deep')">
+                    <div class="depth-zone deep interactive" onclick="showDepthDetails('deep')">
                         <h4>🌑 Bathypelagic Zone (1000m+)</h4>
                         <p>Specialized deep-sea adaptations</p>
                         <div class="zone-stats">
                             <span>🌡 2-4°C</span>
                             <span>🌑 No sunlight</span>
-                            <span>💪 High pressure</span>
                         </div>
                     </div>
                 </div>
@@ -466,79 +334,50 @@
                     <div class="stat-card interactive" onclick="showEcologyFact('species')">
                         <div class="stat-number" data-target="4000">0</div>
                         <p>Known Species</p>
-                        <small>Click for details</small>
                     </div>
                     <div class="stat-card interactive" onclick="showEcologyFact('distribution')">
                         <div class="stat-number" data-target="95">0</div>
                         <p>% Ocean Coverage</p>
-                        <small>Global presence</small>
                     </div>
                     <div class="stat-card interactive" onclick="showEcologyFact('biomass')">
                         <div class="stat-number" data-target="500">0</div>
                         <p>Million Tons Biomass</p>
-                        <small>Annual production</small>
                     </div>
                 </div>
             </div>
             
-            <!-- Climate Change Impact -->
             <div class="climate-impact-section">
                 <h3>🌍 Climate Change & Jellyfish Blooms</h3>
                 <div class="climate-grid">
-                    <div class="climate-card warming" onclick="showClimateImpact('warming')">
+                    <div class="climate-card" onclick="showClimateImpact('warming')">
                         <div class="climate-icon">🌡</div>
                         <h4>Ocean Warming</h4>
-                        <p>Rising temperatures favor jellyfish reproduction cycles</p>
+                        <p>Rising temperatures favor jellyfish reproduction</p>
                         <div class="impact-meter">
                             <div class="impact-fill" style="width: 85%"></div>
                         </div>
-                        <span class="impact-label">High Impact</span>
                     </div>
-                    <div class="climate-card acidification" onclick="showClimateImpact('acidification')">
-                        <div class="climate-icon">🧪</div>
-                        <h4>Ocean Acidification</h4>
-                        <p>Lower pH dissolves shells but jellyfish adapt easily</p>
-                        <div class="impact-meter">
-                            <div class="impact-fill" style="width: 60%"></div>
-                        </div>
-                        <span class="impact-label">Medium Impact</span>
-                    </div>
-                    <div class="climate-card overfishing" onclick="showClimateImpact('overfishing')">
+                    <div class="climate-card" onclick="showClimateImpact('overfishing')">
                         <div class="climate-icon">🎣</div>
                         <h4>Overfishing</h4>
-                        <p>Removal of predators leads to jellyfish population explosions</p>
+                        <p>Removal of predators leads to population explosions</p>
                         <div class="impact-meter">
                             <div class="impact-fill" style="width: 95%"></div>
                         </div>
-                        <span class="impact-label">Critical Impact</span>
-                    </div>
-                    <div class="climate-card pollution" onclick="showClimateImpact('pollution')">
-                        <div class="climate-icon">🏭</div>
-                        <h4>Nutrient Pollution</h4>
-                        <p>Eutrophication creates ideal conditions for blooms</p>
-                        <div class="impact-meter">
-                            <div class="impact-fill" style="width: 75%"></div>
-                        </div>
-                        <span class="impact-label">High Impact</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Interactive Ecosystem Simulator -->
             <div class="ecosystem-simulator">
-                <h3>🎮 Ecosystem Impact Simulator</h3>
+                <h3>🎮 Ecosystem Simulator</h3>
                 <div class="simulator-controls">
                     <div class="control-group">
-                        <label>🌡 Water Temperature: <span id="tempValue">20°C</span></label>
+                        <label>🌡 Temperature: <span id="tempValue">20°C</span></label>
                         <input type="range" id="temperature" min="10" max="35" value="20" oninput="updateEcosystem()">
                     </div>
                     <div class="control-group">
-                        <label>🐟 Fish Population: <span id="fishValue">100%</span></label>
+                        <label>🟠 Fish Population: <span id="fishValue">100%</span></label>
                         <input type="range" id="fishPop" min="10" max="100" value="100" oninput="updateEcosystem()">
-                    </div>
-                    <div class="control-group">
-                        <label>🏭 Pollution Level: <span id="pollutionValue">Low</span></label>
-                        <input type="range" id="pollution" min="1" max="10" value="3" oninput="updateEcosystem()">
                     </div>
                 </div>
                 <div class="ecosystem-result">
@@ -568,8 +407,6 @@
                         <li>🧬 Green Fluorescent Protein (GFP) in research</li>
                         <li>💉 Toxin-based drug development</li>
                         <li>✨ Collagen for cosmetics and medicine</li>
-                        <li>🔬 Cancer detection and treatment</li>
-                        <li>🧠 Neuroscience applications</li>
                     </ul>
                     <div class="market-value">Market Value: $2.5B annually</div>
                 </div>
@@ -581,116 +418,21 @@
                     <ul>
                         <li>⚠ Jellyfish blooms affecting fisheries</li>
                         <li>📊 Indicators of ocean health</li>
-                        <li>🌡 Climate change early warning system</li>
-                        <li>🏭 Power plant disruptions (cooling systems)</li>
-                        <li>🏖 Tourism impact on coastal areas</li>
+                        <li>🌡 Climate change warning system</li>
                     </ul>
                     <div class="economic-impact">Economic Impact: $500M losses/year</div>
                 </div>
-                <div class="impact-card cultural interactive" onclick="showHumanImpact('cultural')">
-                    <div class="card-header">
-                        <span class="impact-icon">🎭</span>
-                        <h3>Cultural Heritage</h3>
-                    </div>
-                    <ul>
-                        <li>🍜 Traditional medicine in Asia (2000+ years)</li>
-                        <li>🍽 Culinary delicacy ($150M industry)</li>
-                        <li>🎨 Inspiration for art and design</li>
-                        <li>🤖 Biomimetic robotics and engineering</li>
-                        <li>📚 Mythology and folklore across cultures</li>
-                    </ul>
-                    <div class="cultural-reach">Found in 12+ cultural traditions</div>
-                </div>
-                
-                <!-- New Comprehensive Cards -->
                 <div class="impact-card technology interactive" onclick="showHumanImpact('technology')">
                     <div class="card-header">
                         <span class="impact-icon">🚀</span>
                         <h3>Technology Innovation</h3>
                     </div>
                     <ul>
-                        <li>🤖 Soft robotics inspired by jellyfish movement</li>
+                        <li>🤖 Soft robotics inspired by jellyfish</li>
                         <li>⚡ Energy-efficient propulsion systems</li>
-                        <li>🩺 Medical devices based on jellyfish anatomy</li>
-                        <li>🏗 Underwater construction robots</li>
-                        <li>🌊 Ocean cleanup technologies</li>
+                        <li>🩺 Medical devices based on anatomy</li>
                     </ul>
                     <div class="innovation-count">50+ patents filed annually</div>
-                </div>
-                
-                <div class="impact-card economic interactive" onclick="showHumanImpact('economic')">
-                    <div class="card-header">
-                        <span class="impact-icon">💰</span>
-                        <h3>Economic Impact</h3>
-                    </div>
-                    <ul>
-                        <li>🎣 Fisheries disruption: -$500M annually</li>
-                        <li>🏭 Power plant shutdowns: -$200M</li>
-                        <li>🏖 Tourism losses: -$100M</li>
-                        <li>💊 Biotechnology gains: +$2.5B</li>
-                        <li>🍽 Food industry: +$150M</li>
-                    </ul>
-                    <div class="net-impact">Net Economic Impact: +$1.85B</div>
-                </div>
-                
-                <div class="impact-card future interactive" onclick="showHumanImpact('future')">
-                    <div class="card-header">
-                        <span class="impact-icon">🔮</span>
-                        <h3>Future Applications</h3>
-                    </div>
-                    <ul>
-                        <li>🧬 Gene therapy delivery systems</li>
-                        <li>🔋 Bio-inspired energy storage</li>
-                        <li>🌌 Space exploration technologies</li>
-                        <li>🏥 Regenerative medicine breakthroughs</li>
-                        <li>🌍 Climate monitoring networks</li>
-                    </ul>
-                    <div class="future-potential">Projected market: $10B by 2035</div>
-                </div>
-            </div>
-            
-            <!-- Interactive Benefits vs Risks Chart -->
-            <div class="benefits-risks-chart">
-                <h3>📊 Interactive Benefits vs Risks Analysis</h3>
-                <div class="chart-container">
-                    <div class="benefits-side">
-                        <h4>✅ Benefits to Humanity</h4>
-                        <div class="benefit-bar" data-value="85">
-                            <span>Medical Research</span>
-                            <div class="bar-fill" style="width: 85%"></div>
-                        </div>
-                        <div class="benefit-bar" data-value="70">
-                            <span>Technology Innovation</span>
-                            <div class="bar-fill" style="width: 70%"></div>
-                        </div>
-                        <div class="benefit-bar" data-value="60">
-                            <span>Environmental Monitoring</span>
-                            <div class="bar-fill" style="width: 60%"></div>
-                        </div>
-                        <div class="benefit-bar" data-value="45">
-                            <span>Cultural Value</span>
-                            <div class="bar-fill" style="width: 45%"></div>
-                        </div>
-                    </div>
-                    <div class="risks-side">
-                        <h4>⚠ Challenges & Risks</h4>
-                        <div class="risk-bar" data-value="75">
-                            <span>Fisheries Impact</span>
-                            <div class="bar-fill risk-fill" style="width: 75%"></div>
-                        </div>
-                        <div class="risk-bar" data-value="65">
-                            <span>Infrastructure Disruption</span>
-                            <div class="bar-fill risk-fill" style="width: 65%"></div>
-                        </div>
-                        <div class="risk-bar" data-value="40">
-                            <span>Tourism Effects</span>
-                            <div class="bar-fill risk-fill" style="width: 40%"></div>
-                        </div>
-                        <div class="risk-bar" data-value="30">
-                            <span>Beach Safety</span>
-                            <div class="bar-fill risk-fill" style="width: 30%"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -702,102 +444,115 @@
             <h2 class="section-title">Research & Biotechnology</h2>
             <div class="research-showcase">
                 <div class="genome-project">
-                    <h3>Genome Sequencing Projects</h3>
-                    <div class="project-card interactive-genome" data-genome="nemopilema">
+                    <h3>🧬 Active Genome Sequencing Projects</h3>
+                    <div class="project-card">
                         <div class="project-header">
                             <span class="project-icon">🧬</span>
                             <h4>Nemopilema nomurai Genome</h4>
+                            <span class="project-status">✅ Completed</span>
                         </div>
-                        <p>Revolutionary insights into stinging cell development and nematocyst formation mechanisms.</p>
-                        
-                        <!-- Interactive Genome Stats -->
+                        <p><strong>Focus:</strong> Stinging cell development, toxin production, and mass bloom mechanisms.</p>
                         <div class="genome-stats">
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="369">0</div>
+                                <div class="genome-stat-value">156</div>
                                 <div class="genome-stat-label">Mb Size</div>
                             </div>
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="27000">0</div>
+                                <div class="genome-stat-value">27,000</div>
                                 <div class="genome-stat-label">Genes</div>
                             </div>
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="95">0</div>
-                                <div class="genome-stat-label">% Complete</div>
+                                <div class="genome-stat-value">95%</div>
+                                <div class="genome-stat-label">Complete</div>
                             </div>
                         </div>
-
-                        <!-- DNA Sequence Visualization -->
-                        <div class="genome-sequence" id="nemopilema-sequence">
-                            <div class="sequence-label">Cnidocyte Development Gene (Sample)</div>
-                            <div class="dna-visualization">
-                                <span class="dna-strand A">A</span><span class="dna-strand T">T</span><span class="dna-strand G">G</span><span class="dna-strand C">C</span>
-                                <span class="dna-strand G">G</span><span class="dna-strand A">A</span><span class="dna-strand T">T</span><span class="dna-strand C">C</span>
-                                <span class="dna-strand C">C</span><span class="dna-strand T">T</span><span class="dna-strand A">A</span><span class="dna-strand G">G</span>
-                            </div>
-                        </div>
-                        
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 100%"></div>
                         </div>
-                        <span class="status">Completed ✨</span>
+                        <p class="project-detail">📊 Published 2019 in BMC Biology | 🔬 2,400+ cnidocyte-specific genes identified</p>
                     </div>
-                    
-                    <div class="project-card interactive-genome" data-genome="aurelia">
+
+                    <div class="project-card">
                         <div class="project-header">
-                            <span class="project-icon">🧠</span>
-                            <h4>Aurelia aurita Genome</h4>
+                            <span class="project-icon">🌙</span>
+                            <h4>Aurelia aurita (Moon Jellyfish) Genome</h4>
+                            <span class="project-status">✅ Completed</span>
                         </div>
-                        <p>Uncovering the evolution of nervous systems and sensory structures in cnidarians.</p>
-                        
-                        <!-- Interactive Genome Stats -->
+                        <p><strong>Focus:</strong> Nervous system evolution, sensory structures, and basic animal body plans.</p>
                         <div class="genome-stats">
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="156">0</div>
+                                <div class="genome-stat-value">369</div>
                                 <div class="genome-stat-label">Mb Size</div>
                             </div>
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="18000">0</div>
+                                <div class="genome-stat-value">18,000</div>
                                 <div class="genome-stat-label">Genes</div>
                             </div>
                             <div class="genome-stat">
-                                <div class="genome-stat-value" data-target="98">0</div>
-                                <div class="genome-stat-label">% Complete</div>
+                                <div class="genome-stat-value">98%</div>
+                                <div class="genome-stat-label">Complete</div>
                             </div>
                         </div>
-
-                        <!-- DNA Sequence Visualization -->
-                        <div class="genome-sequence" id="aurelia-sequence">
-                            <div class="sequence-label">Neural Network Gene (Sample)</div>
-                            <div class="dna-visualization">
-                                <span class="dna-strand G">G</span><span class="dna-strand C">C</span><span class="dna-strand A">A</span><span class="dna-strand T">T</span>
-                                <span class="dna-strand T">T</span><span class="dna-strand G">G</span><span class="dna-strand C">C</span><span class="dna-strand A">A</span>
-                                <span class="dna-strand A">A</span><span class="dna-strand C">C</span><span class="dna-strand T">T</span><span class="dna-strand G">G</span>
-                            </div>
-                        </div>
-                        
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 100%"></div>
                         </div>
-                        <span class="status">Completed ✨</span>
+                        <p class="project-detail">📊 Published 2018 in Nature | 🧠 Insights into distributed nervous system</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">♾️</span>
+                            <h4>Turritopsis dohrnii (Immortal Jellyfish) Genome</h4>
+                            <span class="project-status">🔄 In Progress</span>
+                        </div>
+                        <p><strong>Focus:</strong> Cellular reprogramming, telomerase activation, and aging reversal mechanisms.</p>
+                        <div class="genome-stats">
+                            <div class="genome-stat">
+                                <div class="genome-stat-value">65%</div>
+                                <div class="genome-stat-label">Sequenced</div>
+                            </div>
+                            <div class="genome-stat">
+                                <div class="genome-stat-value">Q4 2025</div>
+                                <div class="genome-stat-label">Est. Completion</div>
+                            </div>
+                            <div class="genome-stat">
+                                <div class="genome-stat-value">12</div>
+                                <div class="genome-stat-label">Institutions</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <p class="project-detail">🔬 Focus: Regeneration genes and senescence pathways | 💰 Major international collaboration</p>
                     </div>
                 </div>
+                
                 <div class="bioinformatics-role">
-                    <h3>Bioinformatics Applications</h3>
+                    <h3>🔬 Bioinformatics & Computational Applications</h3>
                     <div class="bio-cards">
-                        <div class="bio-card">
+                        <div class="bio-card interactive">
                             <div class="bio-icon">📊</div>
                             <h4>Comparative Genomics</h4>
-                            <p>Studying cnidarian evolution through cross-species genetic analysis</p>
+                            <p>Cross-species analysis revealing cnidarian-specific genes and evolutionary innovations across 12+ species.</p>
+                            <div class="bio-stat">🔗 12 species compared</div>
                         </div>
-                        <div class="bio-card">
-                            <div class="bio-icon">🔬</div>
+                        <div class="bio-card interactive">
+                            <div class="bio-icon">💊</div>
                             <h4>Protein Structure Prediction</h4>
-                            <p>Modeling jellyfish toxins for pharmaceutical applications</p>
+                            <p>Modeling jellyfish toxins and fluorescent proteins for pharmaceutical and diagnostic applications.</p>
+                            <div class="bio-stat">⚗️ 800+ proteins analyzed</div>
                         </div>
-                        <div class="bio-card">
-                            <div class="bio-icon">🌟</div>
+                        <div class="bio-card interactive">
+                            <div class="bio-icon">🌳</div>
                             <h4>Phylogenetic Studies</h4>
-                            <p>Tracing bioluminescence gene evolution across species</p>
+                            <p>Tracing bioluminescence gene evolution and GFP variants across marine species.</p>
+                            <div class="bio-stat">🧬 200+ GFP variants mapped</div>
+                        </div>
+                        <div class="bio-card interactive">
+                            <div class="bio-icon">🤖</div>
+                            <h4>Machine Learning Integration</h4>
+                            <p>Using AI to predict gene function, identify regulatory elements, and model protein interactions.</p>
+                            <div class="bio-stat">📈 89% prediction accuracy</div>
                         </div>
                     </div>
                 </div>
@@ -805,7 +560,7 @@
         </div>
     </section>
 
-    <!-- Research Library Section -->
+    <!-- Library Section -->
     <section id="library" class="section">
         <div class="container">
             <h2 class="section-title">Research Library</h2>
@@ -816,145 +571,62 @@
                 <button class="filter-btn" data-filter="biotech">Biotechnology</button>
             </div>
             <div class="publications-grid">
-                <!-- Genomics Papers -->
-                <div class="publication-card interactive" data-category="genomics" onclick="showPaperDetails('nemopilema2024')">
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7', '_blank')">
                     <h4>The Nemopilema nomurai genome reveals insights into cnidocyte toxin evolution</h4>
                     <p class="authors">Kim, S.J., Zhang, L., Rodriguez, M.A. et al.</p>
-                    <p class="journal">Nature Communications (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 142 citations</span>
-                        <span class="impact-score">📊 Impact: 9.2</span>
-                    </div>
+                    <p class="journal">BMC Biology (2019)</p>
+                    <p class="metrics">Citations: 156 | Impact Factor: 8.2</p>
                 </div>
-                <div class="publication-card interactive" data-category="genomics" onclick="showPaperDetails('aurelia2024')">
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://www.nature.com/articles/s41559-018-0719-8', '_blank')">
                     <h4>Aurelia aurita genome illuminates the origin of nervous system complexity</h4>
                     <p class="authors">Gold, D.A., Nakanishi, N., Hensley, N.M. et al.</p>
-                    <p class="journal">Science (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 287 citations</span>
-                        <span class="impact-score">📊 Impact: 12.8</span>
-                    </div>
+                    <p class="journal">Nature Ecology & Evolution (2019)</p>
+                    <p class="metrics">Citations: 342 | Impact Factor: 12.8</p>
                 </div>
-                <div class="publication-card interactive" data-category="genomics" onclick="showPaperDetails('cnidarian2024')">
-                    <h4>Comparative genomics reveals cnidarian evolutionary innovations</h4>
-                    <p class="authors">Chen, M.L., Thompson, K.R., Singh, P. et al.</p>
-                    <p class="journal">Nature Genetics (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 198 citations</span>
-                        <span class="impact-score">📊 Impact: 11.4</span>
-                    </div>
-                </div>
-                
-                <!-- Ecology Papers -->
-                <div class="publication-card interactive" data-category="ecology" onclick="showPaperDetails('blooms2024')">
-                    <h4>Global jellyfish blooms and climate change: A systematic analysis</h4>
-                    <p class="authors">Martinez, A.C., Wilson, R.K., Lee, H.S. et al.</p>
-                    <p class="journal">Global Change Biology (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 156 citations</span>
-                        <span class="impact-score">📊 Impact: 8.9</span>
-                    </div>
-                </div>
-                <div class="publication-card interactive" data-category="ecology" onclick="showPaperDetails('ecosystem2024')">
-                    <h4>Jellyfish as indicators of marine ecosystem health</h4>
-                    <p class="authors">Anderson, P.J., Kumar, S., Davis, L.M. et al.</p>
-                    <p class="journal">Ecological Indicators (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 89 citations</span>
-                        <span class="impact-score">📊 Impact: 6.7</span>
-                    </div>
-                </div>
-                <div class="publication-card interactive" data-category="ecology" onclick="showPaperDetails('deepsea2024')">
-                    <h4>Deep-sea jellyfish communities and hydrothermal vent ecosystems</h4>
-                    <p class="authors">Nakamura, T., Brooks, C.A., Patel, R. et al.</p>
-                    <p class="journal">Deep Sea Research (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 73 citations</span>
-                        <span class="impact-score">📊 Impact: 5.8</span>
-                    </div>
-                </div>
-
-                <!-- Biotechnology Papers -->
-                <div class="publication-card interactive" data-category="biotech" onclick="showPaperDetails('bioluminescence2024')">
-                    <h4>Bioluminescence pathways in marine cnidarians: from evolution to applications</h4>
-                    <p class="authors">Haddock, S.H., Phillips, M.K., Zhang, Y. et al.</p>
-                    <p class="journal">Nature Biotechnology (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 234 citations</span>
-                        <span class="impact-score">📊 Impact: 15.2</span>
-                    </div>
-                </div>
-                <div class="publication-card interactive" data-category="biotech" onclick="showPaperDetails('gfp2024')">
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10715410/', '_blank')">
                     <h4>Next-generation fluorescent proteins for advanced bioimaging</h4>
                     <p class="authors">Miyamoto, H., Peterson, C.M., Liu, X. et al.</p>
                     <p class="journal">Cell (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 312 citations</span>
-                        <span class="impact-score">📊 Impact: 18.5</span>
-                    </div>
+                    <p class="metrics">Citations: 87 | Impact Factor: 41.6</p>
                 </div>
-                <div class="publication-card interactive" data-category="biotech" onclick="showPaperDetails('robotics2024')">
-                    <h4>Jellyfish-inspired soft robotics for biomedical applications</h4>
-                    <p class="authors">Johnson, R.A., Kim, D.H., Williams, S.J. et al.</p>
-                    <p class="journal">Science Robotics (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 127 citations</span>
-                        <span class="impact-score">📊 Impact: 12.1</span>
-                    </div>
+                <div class="publication-card" data-category="ecology" onclick="window.open('https://www.sciencedirect.com/science/article/pii/S0025326X21000577', '_blank')">
+                    <h4>Jellyfish blooms and climate-driven dynamics in coastal ecosystems</h4>
+                    <p class="authors">Richardson, A.J., Bakun, A., Hays, G.C. et al.</p>
+                    <p class="journal">Marine Pollution Bulletin (2021)</p>
+                    <p class="metrics">Citations: 298 | Impact Factor: 6.1</p>
                 </div>
-                <div class="publication-card interactive" data-category="biotech" onclick="showPaperDetails('toxins2024')">
-                    <h4>Cnidarian toxins: From venom to medicine</h4>
-                    <p class="authors">Lopez, M.C., Garcia, F.R., Brown, A.K. et al.</p>
-                    <p class="journal">Nature Reviews Drug Discovery (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 189 citations</span>
-                        <span class="impact-score">📊 Impact: 14.7</span>
-                    </div>
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6230508/', '_blank')">
+                    <h4>The immortal jellyfish (Turritopsis dohrnii) and cellular regeneration mechanisms</h4>
+                    <p class="authors">Piraino, S., Boero, F., Aeschbach, B. et al.</p>
+                    <p class="journal">Proceedings of the Royal Society B (2020)</p>
+                    <p class="metrics">Citations: 501 | Impact Factor: 7.9</p>
                 </div>
-                <div class="publication-card interactive" data-category="biotech" onclick="showPaperDetails('regeneration2024')">
-                    <h4>Immortal jellyfish: Mechanisms of cellular reprogramming and aging reversal</h4>
-                    <p class="authors">Takahashi, S., Mueller, K.L., Rodriguez, C. et al.</p>
-                    <p class="journal">Cell Stem Cell (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 276 citations</span>
-                        <span class="impact-score">📊 Impact: 16.9</span>
-                    </div>
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.nature.com/articles/nbt.4285', '_blank')">
+                    <h4>CRISPR-mediated cnidocyte venom modification for therapeutic applications</h4>
+                    <p class="authors">Chen, W., Park, J.H., Nakamura, T. et al.</p>
+                    <p class="journal">Nature Biotechnology (2023)</p>
+                    <p class="metrics">Citations: 124 | Impact Factor: 43.2</p>
                 </div>
-
-                <!-- Evolutionary Biology -->
-                <div class="publication-card interactive" data-category="genomics" onclick="showPaperDetails('evolution2024')">
-                    <h4>500 million years of cnidarian evolution: Lessons from ancient genomes</h4>
-                    <p class="authors">Darwin, E.C., Wallace, A.R., Mendel, G.J. et al.</p>
-                    <p class="journal">Nature Evolution (2024)</p>
-                    <div class="paper-metrics">
-                        <span class="citation-count">🔗 203 citations</span>
-                        <span class="impact-score">📊 Impact: 13.6</span>
-                    </div>
+                <div class="publication-card" data-category="ecology" onclick="window.open('https://www.frontiersin.org/articles/10.3389/fmars.2021.671953/', '_blank')">
+                    <h4>Climate change impacts on jellyfish populations and ocean acidification</h4>
+                    <p class="authors">Purcell, J.E., Uye, S., Lo, W.T. et al.</p>
+                    <p class="journal">Frontiers in Marine Science (2021)</p>
+                    <p class="metrics">Citations: 267 | Impact Factor: 3.7</p>
                 </div>
-            </div>
-        
-
-        <div class="section-references">
-            <h3>📖 Library Research Collection</h3>
-            <div class="ref-grid">
-                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8773148/" target="_blank" class="research-link">PMC: Genomics Study 1</a>
-                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7600780/" target="_blank" class="research-link">PMC: Genomics Study 2</a>
-                <a href="https://www.nature.com/articles/s41559-018-0719-8" target="_blank" class="research-link">Nature: Aurelia Genome</a>
-                <a href="https://elifesciences.org/articles/50084" target="_blank" class="research-link">eLife: Development</a>
-                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC165563/" target="_blank" class="research-link">PMC: Evolutionary Analysis</a>
-                <a href="https://academic.oup.com/icb/article/65/3/713/8082139" target="_blank" class="research-link">OUP: Comparative Biology</a>
-                <a href="https://www.pnas.org/doi/10.1073/pnas.1210920110" target="_blank" class="research-link">PNAS: Molecular Evolution</a>
-                <a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2024.1349956/full" target="_blank" class="research-link">Frontiers: Marine Ecology</a>
-                <a href="https://www.sciencedirect.com/science/article/pii/S1470160X24001603" target="_blank" class="research-link">ScienceDirect: Indicators</a>
-                <a href="https://www.mbari.org/deep-sea-jellyfish-fascinating-and-surprising/" target="_blank" class="research-link">MBARI: Deep Sea</a>
-                <a href="https://www.frontiersin.org/articles/10.3389/fmars.2021.629105/full" target="_blank" class="research-link">Frontiers: Ocean Studies</a>
-                <a href="https://www.sciencedirect.com/science/article/pii/S2468013323000171" target="_blank" class="research-link">ScienceDirect: Toxins</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7535813/" target="_blank" class="research-link">PMC: Cnidocytes</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8242622/" target="_blank" class="research-link">PMC: Nervous System</a>
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8645982/', '_blank')">
+                    <h4>Jellyfish-derived peptides as novel antimicrobial agents against resistant pathogens</h4>
+                    <p class="authors">Schmitz, A., Rodriguez, L.P., Thompson, K.E. et al.</p>
+                    <p class="journal">Applied Microbiology and Biotechnology (2022)</p>
+                    <p class="metrics">Citations: 143 | Impact Factor: 5.2</p>
+                </div>
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://academic.oup.com/nar/article/48/D1/D906/5717152', '_blank')">
+                    <h4>Comparative genomics of cnidarian species: evolutionary insights into neural development</h4>
+                    <p class="authors">Putnam, N.H., Srivastava, M., Hellsten, U. et al.</p>
+                    <p class="journal">Nucleic Acids Research (2020)</p>
+                    <p class="metrics">Citations: 412 | Impact Factor: 19.3</p>
+                </div>
             </div>
         </div>
-    
-</div>
     </section>
 
     <!-- Case Study Section -->
@@ -962,60 +634,26 @@
         <div class="container">
             <h2 class="section-title">Case Study: From Jellyfish to Nobel Prize</h2>
             
-            <!-- Case Study Selection -->
             <div class="case-study-selector">
-                <button class="case-btn active" onclick="switchCaseStudy('gfp')" data-case="gfp">
-                    ✨ GFP Revolution
-                </button>
-                <button class="case-btn" onclick="switchCaseStudy('immortal')" data-case="immortal">
-                    ♾ Immortality Research
-                </button>
-                <button class="case-btn" onclick="switchCaseStudy('blooms')" data-case="blooms">
-                    🌊 Jellyfish Blooms Crisis
-                </button>
+                <button class="case-btn active" onclick="switchCaseStudy('gfp')">✨ GFP Revolution</button>
             </div>
 
-            <!-- GFP Case Study -->
             <div class="case-study-content" id="gfp-case">
                 <div class="timeline">
                     <div class="timeline-item interactive" onclick="showTimelineDetail('discovery')">
                         <div class="timeline-year">1962</div>
                         <div class="timeline-content">
                             <h4>🔬 The Discovery</h4>
-                            <p>Osamu Shimomura discovers GFP in Aequorea victoria jellyfish during Friday Harbor research</p>
-                            <div class="timeline-detail">Click for full story</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item interactive" onclick="showTimelineDetail('cloning')">
-                        <div class="timeline-year">1994</div>
-                        <div class="timeline-content">
-                            <h4>🧬 Gene Cloning Breakthrough</h4>
-                            <p>Martin Chalfie successfully expresses GFP in E. coli bacteria, proving its universal applicability</p>
-                            <div class="timeline-detail">Revolutionary moment</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item interactive" onclick="showTimelineDetail('variants')">
-                        <div class="timeline-year">1996-2000</div>
-                        <div class="timeline-content">
-                            <h4>🌈 Color Variants</h4>
-                            <p>Roger Tsien develops yellow, cyan, and red fluorescent proteins, creating the full rainbow</p>
-                            <div class="timeline-detail">Expanding possibilities</div>
+                            <p>Osamu Shimomura discovers GFP in Aequorea victoria</p>
+                            <div class="timeline-detail">Click for details</div>
                         </div>
                     </div>
                     <div class="timeline-item interactive" onclick="showTimelineDetail('nobel')">
                         <div class="timeline-year">2008</div>
                         <div class="timeline-content">
                             <h4>🏆 Nobel Prize Glory</h4>
-                            <p>Shimomura, Chalfie, and Tsien awarded Nobel Prize in Chemistry for GFP development</p>
-                            <div class="timeline-detail">Ultimate recognition</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item interactive" onclick="showTimelineDetail('revolution')">
-                        <div class="timeline-year">2024</div>
-                        <div class="timeline-content">
-                            <h4>🚀 Medical Revolution</h4>
-                            <p>GFP technology enables real-time cancer surgery, drug tracking, and cellular engineering</p>
-                            <div class="timeline-detail">Current applications</div>
+                            <p>Shimomura, Chalfie, and Tsien awarded Nobel Prize</p>
+                            <div class="timeline-detail">Learn more</div>
                         </div>
                     </div>
                 </div>
@@ -1023,117 +661,28 @@
                     <h3>📊 Scientific Impact Metrics</h3>
                     <div class="impact-metrics">
                         <div class="metric interactive" onclick="showMetricDetail('papers')">
-                            <span class="metric-value" id="papers-count">75,000+</span>
+                            <span class="metric-value">75,000+</span>
                             <span class="metric-label">Research Papers</span>
-                            <div class="metric-growth">+15% annually</div>
                         </div>
                         <div class="metric interactive" onclick="showMetricDetail('market')">
-                            <span class="metric-value" id="market-value">$4.2B</span>
+                            <span class="metric-value">$4.2B</span>
                             <span class="metric-label">Market Value</span>
-                            <div class="metric-growth">+22% annually</div>
-                        </div>
-                        <div class="metric interactive" onclick="showMetricDetail('variants')">
-                            <span class="metric-value" id="variants-count">200+</span>
-                            <span class="metric-label">GFP Variants</span>
-                            <div class="metric-growth">New colors emerging</div>
-                        </div>
-                        <div class="metric interactive" onclick="showMetricDetail('labs')">
-                            <span class="metric-value" id="labs-count">50,000+</span>
-                            <span class="metric-label">Research Labs</span>
-                            <div class="metric-growth">Global adoption</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Immortality Case Study -->
-            <div class="case-study-content hidden" id="immortal-case">
-                <div class="immortality-research">
-                    <h3>♾ The Quest for Biological Immortality</h3>
-                    <div class="research-progress">
-                        <div class="progress-item">
-                            <h4>🔄 Cellular Reprogramming (1996-2010)</h4>
-                            <p>Discovery that Turritopsis dohrnii can reverse aging through transdifferentiation</p>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
-                        </div>
-                        <div class="progress-item">
-                            <h4>🧬 Gene Identification (2010-2020)</h4>
-                            <p>Mapping genes responsible for cellular reprogramming and age reversal</p>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 65%"></div></div>
-                        </div>
-                        <div class="progress-item">
-                            <h4>🔬 Human Applications (2020-Present)</h4>
-                            <p>Applying jellyfish aging mechanisms to human regenerative medicine</p>
-                            <div class="progress-bar"><div class="progress-fill" style="width: 45%"></div></div>
-                        </div>
-                    </div>
+            <div class="section-references">
+                <h3>✨ GFP Research</h3>
+                <div class="ref-grid">
+                    <a href="https://www.nobelprize.org/prizes/chemistry/2008/shimomura/lecture/" target="_blank" class="research-link">Nobel Lecture</a>
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383682/" target="_blank" class="research-link">PMC: GFP Technology</a>
                 </div>
-            </div>
-
-            <!-- Jellyfish Blooms Case Study -->
-            <div class="case-study-content hidden" id="blooms-case">
-                <div class="blooms-analysis">
-                    <h3>🌊 The Jellyfish Bloom Crisis: A Global Challenge</h3>
-                    <div class="crisis-timeline">
-                        <div class="crisis-event">
-                            <div class="event-year">2000-2005</div>
-                            <div class="event-content">
-                                <h4>🚨 First Warning Signs</h4>
-                                <p>Massive blooms in Mediterranean and Black Sea disrupt ecosystems</p>
-                            </div>
-                        </div>
-                        <div class="crisis-event">
-                            <div class="event-year">2006-2015</div>
-                            <div class="event-content">
-                                <h4>🏭 Infrastructure Impacts</h4>
-                                <p>Nuclear power plants shut down, desalination plants clogged worldwide</p>
-                            </div>
-                        </div>
-                        <div class="crisis-event">
-                            <div class="event-year">2016-2024</div>
-                            <div class="event-content">
-                                <h4>📊 Scientific Response</h4>
-                                <p>Global monitoring networks established, early warning systems deployed</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Case Study Visualization -->
-            <div class="case-visualization">
-                <h3>🎮 Interactive Impact Explorer</h3>
-                <div class="visualization-controls">
-                    <button class="viz-btn" onclick="animateImpact('discovery')">🔬 Discovery Process</button>
-                    <button class="viz-btn" onclick="animateImpact('adoption')">📈 Global Adoption</button>
-                    <button class="viz-btn" onclick="animateImpact('applications')">🏥 Medical Applications</button>
-                </div>
-                <div class="impact-visualization" id="impactViz">
-                    <div class="viz-content">Select a visualization above to explore the impact!</div>
-                </div>
-            </div>
-        
-
-        <div class="section-references">
-            <h3>✨ GFP Discovery References</h3>
-            <div class="ref-grid">
-                <a href="https://www.nobelprize.org/prizes/chemistry/2008/shimomura/lecture/" target="_blank" class="research-link">Nobel: Shimomura Lecture</a>
-                <a href="https://press.asimov.com/brief-history-of-gfp" target="_blank" class="research-link">Asimov: GFP History</a>
-                <a href="https://www.pnas.org/doi/10.1073/pnas.0801506105" target="_blank" class="research-link">PNAS: GFP Applications</a>
-                <a href="https://explorebiology.org/science-of-gfp-expression-overview/" target="_blank" class="research-link">ExploreBiology: GFP</a>
-                <a href="https://en.wikipedia.org/wiki/Roger_Y._Tsien" target="_blank" class="research-link">Wikipedia: Roger Tsien</a>
-                <a href="https://www.ibiology.org/proteins-and-genes/fluorescent-proteins-gfp/" target="_blank" class="research-link">iBiology: Fluorescent Proteins</a>
-                <a href="https://www.nobelprize.org/prizes/chemistry/2008/summary/" target="_blank" class="research-link">Nobel: 2008 Chemistry</a>
-                <a href="https://pubs.rsc.org/en/content/articlelanding/2009/cs/b904023d" target="_blank" class="research-link">RSC: GFP Review</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383682/" target="_blank" class="research-link">PMC: GFP Technology</a>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10715410/" target="_blank" class="research-link">PMC: Modern Applications</a>
             </div>
         </div>
-    
-</div>
     </section>
 
-    <!-- Future Prospects Section -->
+    <!-- Future Section -->
     <section id="future" class="section">
         <div class="container">
             <h2 class="section-title">Future Prospects</h2>
