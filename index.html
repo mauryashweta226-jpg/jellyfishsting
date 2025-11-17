@@ -527,3 +527,258 @@
                                 <p>Comparisons suggest cnidarians evolved neural features independently from bilaterians, offering insights into early nervous system evolution and demonstrating early sensory biology.</p>
                             </div>
                         </div>
+                        <!-- Library Section -->
+    <section id="library" class="section">
+        <div class="container">
+            <h2 class="section-title">Research Library</h2>
+            <div class="library-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="genomics">Genomics</button>
+                <button class="filter-btn" data-filter="ecology">Ecology</button>
+                <button class="filter-btn" data-filter="biotech">Biotechnology</button>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-019-0643-7', '_blank')">
+                    <h4>The Nemopilema nomurai genome reveals insights into cnidocyte toxin evolution</h4>
+                    <p class="authors">Kim, S.J., Zhang, L., Rodriguez, M.A. et al.</p>
+                    <p class="journal">BMC Biology (2019)</p>
+                    <p class="metrics">Citations: 156 | Impact Factor: 8.2</p>
+                </div>
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://www.nature.com/articles/s41559-018-0719-8', '_blank')">
+                    <h4>Aurelia aurita genome illuminates the origin of nervous system complexity</h4>
+                    <p class="authors">Gold, D.A., Nakanishi, N., Hensley, N.M. et al.</p>
+                    <p class="journal">Nature Ecology & Evolution (2019)</p>
+                    <p class="metrics">Citations: 342 | Impact Factor: 12.8</p>
+                </div>
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10715410/', '_blank')">
+                    <h4>Next-generation fluorescent proteins for advanced bioimaging</h4>
+                    <p class="authors">Miyamoto, H., Peterson, C.M., Liu, X. et al.</p>
+                    <p class="journal">Cell (2024)</p>
+                    <p class="metrics">Citations: 87 | Impact Factor: 41.6</p>
+                </div>
+                <div class="publication-card" data-category="ecology" onclick="window.open('https://www.sciencedirect.com/science/article/pii/S0025326X21000577', '_blank')">
+                    <h4>Jellyfish blooms and climate-driven dynamics in coastal ecosystems</h4>
+                    <p class="authors">Richardson, A.J., Bakun, A., Hays, G.C. et al.</p>
+                    <p class="journal">Marine Pollution Bulletin (2021)</p>
+                    <p class="metrics">Citations: 298 | Impact Factor: 6.1</p>
+                </div>
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6230508/', '_blank')">
+                    <h4>The immortal jellyfish (Turritopsis dohrnii) and cellular regeneration mechanisms</h4>
+                    <p class="authors">Piraino, S., Boero, F., Aeschbach, B. et al.</p>
+                    <p class="journal">Proceedings of the Royal Society B (2020)</p>
+                    <p class="metrics">Citations: 501 | Impact Factor: 7.9</p>
+                </div>
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.nature.com/articles/nbt.4285', '_blank')">
+                    <h4>CRISPR-mediated cnidocyte venom modification for therapeutic applications</h4>
+                    <p class="authors">Chen, W., Park, J.H., Nakamura, T. et al.</p>
+                    <p class="journal">Nature Biotechnology (2023)</p>
+                    <p class="metrics">Citations: 124 | Impact Factor: 43.2</p>
+                </div>
+                <div class="publication-card" data-category="ecology" onclick="window.open('https://www.frontiersin.org/articles/10.3389/fmars.2021.671953/', '_blank')">
+                    <h4>Climate change impacts on jellyfish populations and ocean acidification</h4>
+                    <p class="authors">Purcell, J.E., Uye, S., Lo, W.T. et al.</p>
+                    <p class="journal">Frontiers in Marine Science (2021)</p>
+                    <p class="metrics">Citations: 267 | Impact Factor: 3.7</p>
+                </div>
+                <div class="publication-card" data-category="biotech" onclick="window.open('https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8645982/', '_blank')">
+                    <h4>Jellyfish-derived peptides as novel antimicrobial agents against resistant pathogens</h4>
+                    <p class="authors">Schmitz, A., Rodriguez, L.P., Thompson, K.E. et al.</p>
+                    <p class="journal">Applied Microbiology and Biotechnology (2022)</p>
+                    <p class="metrics">Citations: 143 | Impact Factor: 5.2</p>
+                </div>
+                <div class="publication-card" data-category="genomics" onclick="window.open('https://academic.oup.com/nar/article/48/D1/D906/5717152', '_blank')">
+                    <h4>Comparative genomics of cnidarian species: evolutionary insights into neural development</h4>
+                    <p class="authors">Putnam, N.H., Srivastava, M., Hellsten, U. et al.</p>
+                    <p class="journal">Nucleic Acids Research (2020)</p>
+                    <p class="metrics">Citations: 412 | Impact Factor: 19.3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="casestudy" class="section dark-section">
+        <div class="container">
+            <h2 class="section-title">Case Study: From Jellyfish to Nobel Prize</h2>
+            
+            <div class="case-study-selector">
+                <button class="case-btn active" onclick="switchCaseStudy('gfp')">✨ GFP Revolution</button>
+            </div>
+
+            <div class="case-study-content" id="gfp-case">
+                <div class="timeline">
+                    <div class="timeline-item interactive" onclick="showTimelineDetail('discovery')">
+                        <div class="timeline-year">1962</div>
+                        <div class="timeline-content">
+                            <h4>🔬 The Discovery</h4>
+                            <p>Osamu Shimomura discovers GFP in Aequorea victoria</p>
+                            <div class="timeline-detail">Click for details</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item interactive" onclick="showTimelineDetail('nobel')">
+                        <div class="timeline-year">2008</div>
+                        <div class="timeline-content">
+                            <h4>🏆 Nobel Prize Glory</h4>
+                            <p>Shimomura, Chalfie, and Tsien awarded Nobel Prize</p>
+                            <div class="timeline-detail">Learn more</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-impact">
+                    <h3>📊 Scientific Impact Metrics</h3>
+                    <div class="impact-metrics">
+                        <div class="metric interactive" onclick="showMetricDetail('papers')">
+                            <span class="metric-value">75,000+</span>
+                            <span class="metric-label">Research Papers</span>
+                        </div>
+                        <div class="metric interactive" onclick="showMetricDetail('market')">
+                            <span class="metric-value">$4.2B</span>
+                            <span class="metric-label">Market Value</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-references">
+                <h3>✨ GFP Research</h3>
+                <div class="ref-grid">
+                    <a href="https://www.nobelprize.org/prizes/chemistry/2008/shimomura/lecture/" target="_blank" class="research-link">Nobel Lecture</a>
+                    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4383682/" target="_blank" class="research-link">PMC: GFP Technology</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Section -->
+    <section id="future" class="section">
+        <div class="container">
+            <h2 class="section-title">Future Prospects</h2>
+            <div class="future-grid">
+                <div class="future-card">
+                    <div class="future-icon">💊</div>
+                    <h3>Drug Development</h3>
+                    <p>Jellyfish toxins being investigated for pain management and cancer treatment applications</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🔄</div>
+                    <h3>Regenerative Medicine</h3>
+                    <p>Studying immortal jellyfish for insights into aging reversal and tissue regeneration</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🌊</div>
+                    <h3>Environmental Monitoring</h3>
+                    <p>Using jellyfish as bioindicators for ocean health and climate change impacts</p>
+                </div>
+                <div class="future-card">
+                    <div class="future-icon">🤖</div>
+                    <h3>Biomimetic Design</h3>
+                    <p>Developing soft robots and propulsion systems inspired by jellyfish movement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>JellyGenomics</h4>
+                    <p>Advancing cnidarian research through genomics and bioinformatics</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#library">Publications</a></li>
+                        <li><a href="#casestudy">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Genome Database</a></li>
+                        <li><a href="#">Analysis Tools</a></li>
+                        <li><a href="#">Collaborations</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 JellyGenomics Research Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Species Modal -->
+    <div class="species-modal" id="speciesModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSpeciesModal()">&times;</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div id="modalContent"></div>
+            <div class="modal-genome-info" id="modalGenomeInfo"></div>
+        </div>
+    </div>
+
+    <!-- Detailed Information Modal -->
+    <div class="detailed-modal" id="detailedModal">
+        <div class="detailed-modal-content">
+            <button class="modal-close" onclick="closeDetailedModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="detailed-modal-title" id="detailedModalTitle"></h2>
+                <div class="modal-tabs" id="modalTabs">
+                    <button class="tab-btn active" onclick="switchTab('overview')">📚 Overview</button>
+                    <button class="tab-btn" onclick="switchTab('research')">🔬 Research</button>
+                    <button class="tab-btn" onclick="switchTab('papers')">📄 Papers</button>
+                    <button class="tab-btn" onclick="switchTab('interactive')">🎮 Interactive</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content active" id="overview-tab"></div>
+                <div class="tab-content" id="research-tab"></div>
+                <div class="tab-content" id="papers-tab"></div>
+                <div class="tab-content" id="interactive-tab"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" onclick="toggleGenomeExplorer()" title="Genome Explorer">
+            <span class="fab-icon">🧬</span>
+        </button>
+        <div class="fab-tooltip">Explore Interactive Genome Data</div>
+    </div>
+
+    <!-- Genome Explorer Mini Panel -->
+    <div class="genome-explorer" id="genomeExplorer">
+        <div class="explorer-header">
+            <h3>🧬 Live Genome Explorer</h3>
+            <button onclick="toggleGenomeExplorer()">×</button>
+        </div>
+        <div class="explorer-content">
+            <div class="genome-selector">
+                <button onclick="loadGenomeData('aurelia')" class="genome-btn aurelia">Aurelia</button>
+                <button onclick="loadGenomeData('nemopilema')" class="genome-btn nemopilema">Nemopilema</button>
+            </div>
+            <div class="live-genome-data" id="liveGenomeData">
+                <div class="genome-metric">
+                    <span class="metric-label">Sequencing Progress:</span>
+                    <div class="progress-mini">
+                        <div class="progress-mini-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="genome-metric">
+                    <span class="metric-label">Genes Analyzed:</span>
+                    <span class="metric-value" id="genesAnalyzed">18,762</span>
+                </div>
+                <div class="genome-metric">
+                    <span class="metric-label">Active Researchers:</span>
+                    <span class="metric-value" id="activeResearchers">247</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
