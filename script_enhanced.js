@@ -100,22 +100,22 @@ function showSpeciesDetails(species) {
     const speciesData = {
         aurelia: {
             title: 'Aurelia aurita - Moon Jellyfish 🌙',
-            info: `The moon jellyfish is one of the most studied cnidarians in genomics research. Its genome has revealed crucial insights into the evolution of nervous systems with 27,000 protein-coding genes and 792 neural-related genes.`,
+            info: `The moon jellyfish is one of the most studied cnidarians in genomics research. Its genome has revealed crucial insights into the evolution of nervous systems.`,
             stats: [
-                { label: 'Genome Size', value: '397 Mb' },
-                { label: 'Total Genes', value: '27,000' },
-                { label: 'Neural Genes', value: '792' },
+                { label: 'Genome Size', value: '369 Mb' },
+                { label: 'Total Genes', value: '18,762' },
+                { label: 'Discovery Year', value: '1758' },
                 { label: 'Lifespan', value: '6-12 months' }
             ]
         },
         nemopilema: {
             title: 'Nemopilema nomurai - Nomura\'s Jellyfish 🦑',
-            info: `One of the largest jellyfish species with a 2.0 Gb genome containing ~18,000 genes. Its genome sequencing revealed 67 nematocyst formation genes and 14 novel toxin genes, explaining the exceptional potency of its sting.`,
+            info: `One of the largest jellyfish species, with a bell diameter reaching 2 meters. Its genome sequencing has provided invaluable data on toxin production.`,
             stats: [
-                { label: 'Genome Size', value: '2.0 Gb' },
-                { label: 'Total Genes', value: '18,000' },
+                { label: 'Genome Size', value: '156 Mb' },
                 { label: 'Max Diameter', value: '2 meters' },
-                { label: 'Max Weight', value: '200 kg' }
+                { label: 'Max Weight', value: '200 kg' },
+                { label: 'Native Region', value: 'East Asia' }
             ]
         },
         atolla: {
@@ -130,7 +130,7 @@ function showSpeciesDetails(species) {
         },
         immortal: {
             title: 'Turritopsis dohrnii - Immortal Jellyfish ♾️',
-            info: `This remarkable species can reverse its aging process by transforming from adult back to polyp stage through cellular transdifferentiation.`,
+            info: `This remarkable species can reverse its aging process by transforming from adult back to polyp stage.`,
             stats: [
                 { label: 'Size', value: '4.5 mm' },
                 { label: 'Biological Age', value: 'Potentially ♾️' },
@@ -288,15 +288,10 @@ const detailedInfoData = {
     ancient: {
         title: "🧬 Ancient Survivors: 500 Million Years of Evolution",
         overview: `<h3>🦕 Prehistoric Dominance</h3>
-            <p>Jellyfish are among Earth's oldest inhabitants, with fossil evidence dating back to the Cambrian period. They survived five mass extinction events including the Permian-Triassic extinction (252 million years ago) and the Cretaceous-Paleogene extinction (66 million years ago) that wiped out the dinosaurs. Their remarkably simple yet effective body plan has remained largely unchanged for hundreds of millions of years.</p>
-            <p>The evolutionary success of jellyfish lies in their adaptability and minimal resource requirements. They can survive in oxygen-depleted waters, extreme temperatures, and changing ocean chemistry - conditions that would be fatal to most marine life.</p>`,
+            <p>Jellyfish are among Earth's oldest inhabitants, with fossil evidence dating back to the Cambrian period.</p>`,
         research: `<h3>🔬 Current Research Frontiers</h3>
-            <p>Scientists are comparing ancient jellyfish fossils with modern genomes to understand what makes these organisms so resilient. Recent studies focus on:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Heat shock proteins that protect against temperature extremes</li>
-                <li>DNA repair mechanisms that maintain genetic stability over millennia</li>
-                <li>Metabolic flexibility allowing survival in varied conditions</li>
-            </ul>`,
+            <p>Comparing ancient and modern jellyfish genomes to understand evolutionary stability mechanisms.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>🕰️ Jellyfish Timeline</h4>
@@ -308,15 +303,10 @@ const detailedInfoData = {
     water: {
         title: "💧 95% Water: The Miracle of Hydro-Engineering",
         overview: `<h3>💧 Living Water Balloons</h3>
-            <p>Jellyfish are nature's ultimate minimalists - composed of 95% water yet capable of complex behaviors. The mesoglea (middle jelly layer) is a sophisticated hydrogel that provides structure, buoyancy, and protection while requiring minimal metabolic maintenance.</p>
-            <p>This water-based design makes jellyfish incredibly energy-efficient swimmers. They use 48% less oxygen per distance traveled than any other swimming animal, making them the most efficient swimmers on Earth.</p>`,
+            <p>Jellyfish are nature's ultimate minimalists - 95% water, yet capable of complex behaviors.</p>`,
         research: `<h3>🔬 Biomimetics & Robotics</h3>
-            <p>Engineers are copying jellyfish propulsion systems for:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Soft underwater robots for ocean exploration</li>
-                <li>Medical devices like artificial hearts and drug delivery systems</li>
-                <li>Energy-efficient vehicle designs</li>
-            </ul>`,
+            <p>Engineers copy jellyfish propulsion for underwater robots and medical devices.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>💧 Water Calculator</h4>
@@ -328,16 +318,10 @@ const detailedInfoData = {
     bioluminescence: {
         title: "✨ Bioluminescence: Nature's Living Light Show",
         overview: `<h3>✨ The Green Revolution</h3>
-            <p>Over 80% of deep-sea jellyfish species produce their own light through bioluminescence. In 1962, Osamu Shimomura discovered Green Fluorescent Protein (GFP) in the jellyfish Aequorea victoria - a discovery that revolutionized cell biology and earned him the 2008 Nobel Prize in Chemistry.</p>
-            <p>GFP allows scientists to tag and track proteins, cells, and genes in living organisms, leading to breakthroughs in cancer research, neuroscience, and developmental biology.</p>`,
+            <p>Jellyfish bioluminescence led to the discovery of GFP, winning the Nobel Prize.</p>`,
         research: `<h3>🔬 Cutting-Edge Bioluminescence Research</h3>
-            <p>Modern applications include:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Optogenetics: Using light-sensitive proteins to control brain cells</li>
-                <li>Real-time visualization of cancer metastasis</li>
-                <li>Tracking stem cell differentiation</li>
-                <li>Developing new fluorescent proteins in all colors of the spectrum</li>
-            </ul>`,
+            <p>Using light-sensitive proteins to control brain cells and treat neurological diseases.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>✨ Light Chemistry</h4>
@@ -347,18 +331,12 @@ const detailedInfoData = {
         </div>`
     },
     reproduction: {
-        title: "🔄 Complex Lifecycle: The Most Alien Reproduction",
+        title: "🔄 Alien Reproduction: The Most Complex Lifecycle",
         overview: `<h3>🔄 Two-Stage Alien Lifecycle</h3>
-            <p>Jellyfish alternate between two completely different body forms: the sessile polyp (attached to surfaces) and the free-swimming medusa (the familiar jellyfish form). This metagenesis is controlled by complex gene regulatory networks including Wnt, TGF-β, and Hox genes.</p>
-            <p>Environmental triggers like temperature, food availability, and day length can cause polyps to bud off multiple medusae simultaneously - creating sudden jellyfish blooms.</p>`,
+            <p>Jellyfish alternate between polyp and medusa stages.</p>`,
         research: `<h3>🔬 Reproductive Biology Research</h3>
-            <p>Scientists study jellyfish reproduction to understand:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Developmental plasticity and environmental adaptation</li>
-                <li>Asexual vs sexual reproduction trade-offs</li>
-                <li>Gene expression changes during metamorphosis</li>
-                <li>Climate change impacts on bloom dynamics</li>
-            </ul>`,
+            <p>Studying genetic mechanisms that control stage transitions.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>🔄 Lifecycle Simulator</h4>
@@ -370,16 +348,10 @@ const detailedInfoData = {
     intelligence: {
         title: "🧠 Brainless Intelligence: Distributed Neural Networks",
         overview: `<h3>🧠 Neural Networks Without a Brain</h3>
-            <p>Despite having no central brain, jellyfish possess a sophisticated distributed nervous system with over 8,000 neurons arranged in a nerve net. The Aurelia aurita genome revealed 792 neural-related genes including ion channels, neurotransmitter receptors, and synaptic proteins.</p>
-            <p>Recent research shows jellyfish can learn from experience, remember feeding locations, and demonstrate sleep-like states - challenging our definitions of consciousness and intelligence.</p>`,
+            <p>Despite having no central brain, jellyfish demonstrate learning and memory.</p>`,
         research: `<h3>🔬 Neuroscience Applications</h3>
-            <p>Jellyfish neural architecture is inspiring:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Decentralized AI systems with no single point of failure</li>
-                <li>Fault-tolerant computer networks</li>
-                <li>Understanding the minimal requirements for learning</li>
-                <li>Evolution of consciousness and sensory processing</li>
-            </ul>`,
+            <p>Using jellyfish neural architecture to design fault-tolerant computer networks.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>🧠 Neural Network</h4>
@@ -391,16 +363,10 @@ const detailedInfoData = {
     extremophiles: {
         title: "🌡️ Extreme Survivors: Life in Impossible Conditions",
         overview: `<h3>🌡️ Masters of Extreme Environments</h3>
-            <p>Jellyfish thrive in conditions that would kill most organisms: Arctic waters at -2°C, hydrothermal vents at 80°C, deep ocean trenches with pressure 300x atmospheric pressure, and oxygen-depleted dead zones. Some species have even survived simulated space conditions on the International Space Station.</p>
-            <p>Their survival mechanisms include specialized proteins, flexible metabolism, and the ability to enter dormant states during unfavorable conditions.</p>`,
+            <p>Jellyfish survive in Arctic ice, boiling vents, and even outer space experiments.</p>`,
         research: `<h3>🔬 Extremophile Research Applications</h3>
-            <p>Understanding jellyfish adaptations helps us:</p>
-            <ul style="margin-left: 2rem; line-height: 1.8;">
-                <li>Predict and track climate change impacts on marine ecosystems</li>
-                <li>Develop stress-resistant crops and organisms</li>
-                <li>Create materials that function in extreme environments</li>
-                <li>Study evolution of life on other planets</li>
-            </ul>`,
+            <p>Studying how jellyfish adapt to rapid climate change.</p>`,
+        papers: [],
         interactive: `<div class="interactive-elements">
             <div class="interactive-widget">
                 <h4>🌡️ Extreme Conditions</h4>
@@ -419,6 +385,7 @@ function showDetailedInfo(topic) {
         document.getElementById('detailedModalTitle').innerHTML = data.title;
         document.getElementById('overview-tab').innerHTML = data.overview;
         document.getElementById('research-tab').innerHTML = data.research;
+        document.getElementById('papers-tab').innerHTML = '<p>Research papers coming soon...</p>';
         document.getElementById('interactive-tab').innerHTML = data.interactive;
         
         modal.classList.add('active');
@@ -475,30 +442,24 @@ function checkAnswer(isCorrect, buttonElement) {
 // Interactive Functions
 function showEvolutionTimeline() {
     const facts = [
-        "560 MYA: First jellyfish-like creatures appear in Ediacaran period",
+        "560 MYA: First jellyfish-like creatures appear",
         "540 MYA: Cambrian explosion - jellyfish diversity booms",
-        "252 MYA: Survived Permian-Triassic extinction (96% species died)",
-        "66 MYA: Survived Cretaceous-Paleogene extinction (dinosaurs extinct)",
-        "Today: Still thriving in every ocean with minimal evolutionary changes!"
+        "Today: Still thriving in every ocean!"
     ];
     const randomFact = facts[Math.floor(Math.random() * facts.length)];
     document.getElementById('timelineFact').innerHTML = `<strong>${randomFact}</strong>`;
 }
 
 function calculateWaterContent() {
-    const comparison = `
-        <strong>Humans: 60% water</strong><br>
-        <strong>Jellyfish: 95% water</strong><br>
-        <em>Jellyfish are 158% more water than humans!</em>
-    `;
-    document.getElementById('waterFact').innerHTML = comparison;
+    const human = "Humans: 60% water";
+    const jellyfish = "Jellyfish: 95% water";
+    document.getElementById('waterFact').innerHTML = `<strong>${human}<br>${jellyfish}</strong>`;
 }
 
 function simulateBioluminescence() {
     const reactions = [
-        "✨ Luciferin + Luciferase + O₂ = Blue-Green Light at 509nm!",
-        "🔬 Calcium ions trigger photon emission in milliseconds",
-        "💡 Energy efficiency: 88% of energy converts to light (vs 10% in bulbs)"
+        "✨ Luciferin + Luciferase = Blue Light!",
+        "🔬 Calcium triggers photon emission"
     ];
     const reaction = reactions[Math.floor(Math.random() * reactions.length)];
     document.getElementById('lightFact').innerHTML = `<strong>${reaction}</strong>`;
@@ -506,10 +467,8 @@ function simulateBioluminescence() {
 
 function simulateLifecycle() {
     const facts = [
-        "🪼 Polyp → Medusa transformation in 48-72 hours",
-        "🔄 Single polyp can bud off 40+ medusae",
-        "🌡️ Temperature rise of 2°C triggers metamorphosis",
-        "🧬 Wnt genes control body plan reorganization"
+        "🪼 Polyp transforms into medusa in 48 hours",
+        "🔄 Can switch between stages based on environment"
     ];
     const fact = facts[Math.floor(Math.random() * facts.length)];
     document.getElementById('lifecycleFact').innerHTML = `<strong>${fact}</strong>`;
@@ -517,10 +476,8 @@ function simulateLifecycle() {
 
 function simulateNeuralNet() {
     const facts = [
-        "🕸️ 8,000 neurons form distributed network with no center",
-        "⚡ Signals travel at 0.15 m/s through nerve net",
-        "🧠 792 neural genes despite having zero brain cells",
-        "💡 Can learn and remember without hippocampus or cortex"
+        "🕸️ 8,000 neurons form distributed network",
+        "⚡ Signals travel at 0.15 m/s through net"
     ];
     const fact = facts[Math.floor(Math.random() * facts.length)];
     document.getElementById('neuralFact').innerHTML = `<strong>${fact}</strong>`;
@@ -528,10 +485,8 @@ function simulateNeuralNet() {
 
 function testExtremes() {
     const conditions = [
-        "🧊 Arctic: -2°C - SURVIVED for months!",
-        "🔥 Hydrothermal vents: 80°C - SURVIVED!",
-        "🌊 Deep ocean: 11,000m depth, 1,100x pressure - SURVIVED!",
-        "🚀 ISS Space experiments: Microgravity - ADAPTED!"
+        "🧊 Arctic: -2°C - SURVIVED!",
+        "🔥 Hydrothermal vents: 80°C - SURVIVED!"
     ];
     const condition = conditions[Math.floor(Math.random() * conditions.length)];
     document.getElementById('extremeFact').innerHTML = `<strong>${condition}</strong>`;
@@ -542,15 +497,15 @@ function showDepthDetails(zone) {
     const zoneData = {
         surface: {
             title: "🌞 Sunlit Epipelagic Zone",
-            details: "Home to 60% of jellyfish species including Moon Jellies and Lion's Mane. Rich in phytoplankton providing abundant food. Temperature ranges 15-30°C depending on latitude."
+            details: "Home to 60% of jellyfish species. Rich in phytoplankton."
         },
         twilight: {
             title: "🌅 Mysterious Mesopelagic Zone", 
-            details: "The twilight zone where 80% of species are bioluminescent. Home to Atolla jellyfish with their famous 'burglar alarm' defense. Pressure increases to 100x atmospheric."
+            details: "The twilight zone where 80% of species are bioluminescent."
         },
         deep: {
             title: "🌑 Alien Bathypelagic Zone",
-            details: "Eternal darkness, crushing pressure up to 300x surface pressure. Deep-sea jellyfish have adapted with transparent bodies, efficient metabolism, and extreme pressure tolerance."
+            details: "Eternal darkness, crushing pressure up to 300x surface pressure."
         }
     };
     
@@ -579,16 +534,16 @@ function showDepthDetails(zone) {
 function showEcologyFact(factType) {
     const facts = {
         species: {
-            title: "🔢 Species Diversity",
-            content: "Over 4,000 known jellyfish species exist, but scientists estimate there may be 10,000+ undiscovered species in deep oceans!"
+            title: "📢 Species Diversity",
+            content: "Over 4,000 known jellyfish species exist!"
         },
         distribution: {
             title: "🌍 Global Distribution", 
-            content: "Jellyfish are found in every ocean on Earth, from surface waters to 11,000m depth in the Mariana Trench!"
+            content: "Jellyfish are found in every ocean on Earth!"
         },
         biomass: {
             title: "⚖️ Biomass Production",
-            content: "Annual jellyfish biomass exceeds 500 million tons globally - more than all commercially fished species combined!"
+            content: "Annual jellyfish biomass exceeds 500 million tons!"
         }
     };
     
@@ -618,11 +573,11 @@ function showClimateImpact(impactType) {
     const impacts = {
         warming: {
             title: "🌡️ Ocean Warming Effects",
-            description: "Rising ocean temperatures accelerate jellyfish reproduction cycles by 15-30%. Warmer waters also reduce oxygen levels, creating dead zones where jellyfish thrive but fish cannot survive."
+            description: "Rising ocean temperatures accelerate jellyfish reproduction cycles."
         },
         overfishing: {
             title: "🎣 Overfishing Consequences",
-            description: "Removing predatory fish creates ecological niches that jellyfish rapidly fill. Some blooms reach 100 million individuals, clogging fishing nets and power plant intakes."
+            description: "Removing fish creates ecological niches that jellyfish rapidly fill."
         }
     };
     
@@ -663,9 +618,13 @@ function updateEcosystem() {
     document.getElementById('jellyfishPop').style.width = jellyfishPop + '%';
     
     let status = "Balanced";
-    if (jellyfishPop > 80) status = "🚨 BLOOM ALERT! Mass jellyfish event predicted!";
-    else if (jellyfishPop > 65) status = "⚠
-    // Human Impact Functions  
+    if (jellyfishPop > 80) status = "🚨 BLOOM ALERT!";
+    else if (jellyfishPop < 30) status = "📉 Low Population";
+    
+    document.getElementById('ecosystemPrediction').textContent = "Ecosystem status: " + status;
+}
+
+// Human Impact Functions  
 function showHumanImpact(impactType) {
     const impacts = {
         medical: {
