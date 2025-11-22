@@ -433,7 +433,7 @@ body {
 .section-title {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     position: relative;
     display: inline-block;
     width: 100%;
@@ -454,18 +454,22 @@ body {
 .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
     margin-top: 2rem;
 }
 
 .about-card {
     background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     text-align: center;
     cursor: pointer;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .about-card:hover {
@@ -516,9 +520,10 @@ body {
 /* Quiz */
 .knowledge-quiz {
     background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
+    padding: 3rem 2.5rem;
     border-radius: 20px;
-    margin-top: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     border: 2px solid var(--accent-color);
     text-align: center;
 }
@@ -557,6 +562,103 @@ body {
     background: var(--neon-pink);
     color: white;
     border-color: var(--neon-pink);
+}
+
+.quiz-explanation {
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.2), rgba(57, 255, 20, 0.2));
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+    border: 2px solid var(--accent-color);
+    animation: slideIn 0.3s ease;
+}
+
+.quiz-explanation p {
+    color: var(--text-dark);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.next-question-btn {
+    background: linear-gradient(135deg, var(--accent-color), var(--bioluminescent));
+    color: var(--dark-bg);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.next-question-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(100, 255, 218, 0.5);
+}
+
+.quiz-complete {
+    padding: 2rem;
+    text-align: center;
+}
+
+.quiz-complete h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.final-score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--accent-color), var(--bioluminescent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 1rem 0;
+}
+
+.completion-message {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin: 1.5rem 0;
+    font-weight: 600;
+}
+
+.restart-quiz-btn {
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.restart-quiz-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 0, 128, 0.4);
+}
+
+.quiz-score {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Anatomy */
@@ -671,8 +773,9 @@ body {
 /* Species Cards */
 .species-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 .species-card {
@@ -682,6 +785,8 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .species-card:hover {
@@ -694,6 +799,26 @@ body {
     background-size: cover;
     background-position: center;
     position: relative;
+}
+
+.species-card h3 {
+    padding: 1.5rem 1.5rem 0.5rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.species-card .species-name {
+    padding: 0 1.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 0.5rem 0;
+}
+
+.species-card > p:not(.species-name) {
+    padding: 0 1.5rem 1rem;
+    margin: 0;
+    color: var(--text-dark);
+    line-height: 1.6;
 }
 
 .genome-badge {
@@ -752,11 +877,12 @@ body {
     color: var(--text-light);
     padding: 3rem;
     border-radius: 20px;
-    max-width: 600px;
-    max-height: 80vh;
+    max-width: 900px;
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
     border: 2px solid var(--accent-color);
+    box-shadow: 0 0 50px rgba(100, 255, 218, 0.3);
 }
 
 .modal-close {
@@ -814,11 +940,19 @@ body {
 
 /* Species Comparison */
 .species-comparison-tool {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.95), rgba(0, 102, 153, 0.9));
+    padding: 2.5rem;
     border-radius: 20px;
     margin-top: 3rem;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var(--bioluminescent);
+    box-shadow: 0 10px 40px rgba(57, 255, 20, 0.2);
+}
+
+.species-comparison-tool h3 {
+    color: var(--bioluminescent);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
 }
 
 .comparison-controls {
@@ -831,19 +965,28 @@ body {
 
 .comparison-controls select {
     padding: 1rem 1.5rem;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--bioluminescent);
     border-radius: 10px;
-    background: white;
+    background: rgba(10, 15, 46, 0.8);
+    color: var(--accent-color);
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.comparison-controls select:hover {
+    background: rgba(57, 255, 20, 0.2);
+    border-color: var(--accent-color);
 }
 
 .vs-text {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--accent-color);
-    background: var(--primary-color);
-    padding: 1rem;
+    color: var(--dark-bg);
+    background: var(--bioluminescent);
+    padding: 1rem 1.5rem;
     border-radius: 50%;
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
 }
 
 .comparison-grid {
@@ -853,10 +996,23 @@ body {
 }
 
 .comparison-card {
-    background: linear-gradient(135deg, var(--light-bg), #e8f2ff);
+    background: linear-gradient(135deg, rgba(10, 15, 46, 0.9), rgba(26, 35, 126, 0.8));
     padding: 2rem;
     border-radius: 15px;
-    border: 1px solid var(--accent-color);
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.comparison-card:hover {
+    border-color: var(--bioluminescent);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+    transform: translateY(-5px);
+}
+
+.comparison-card h4 {
+    color: var(--bioluminescent);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .comparison-stat {
@@ -864,6 +1020,15 @@ body {
     justify-content: space-between;
     padding: 0.8rem 0;
     border-bottom: 1px solid rgba(100, 255, 218, 0.3);
+    color: var(--text-light);
+}
+
+.comparison-stat strong {
+    color: var(--accent-color);
+}
+
+.comparison-stat:last-child {
+    border-bottom: none;
 }
 
 /* Ecology */
@@ -1027,8 +1192,8 @@ body {
 /* Human Impact */
 .impact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
 }
 
 .impact-card {
@@ -1182,18 +1347,23 @@ body {
 
 .publications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
 }
 
 .publication-card {
     background: white;
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border-left: 4px solid var(--primary-color);
     cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .publication-card:hover {
@@ -1489,8 +1659,8 @@ body {
 /* Future Section */
 .future-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
 }
 
 .future-card {
@@ -1786,12 +1956,46 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .genomics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .ecology-stats {
         grid-template-columns: 1fr;
     }
     
     .ref-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 2rem 1.5rem;
+        max-width: 95%;
+        max-height: 90vh;
+    }
+    
+    .genome-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .genomics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .future-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
     }
 }
 
@@ -1858,4 +2062,423 @@ body {
     padding-top: 0.75rem;
     border-top: 1px solid rgba(100, 255, 218, 0.3);
     font-weight: 600;
+}
+
+/* Enhanced Modal Styling */
+.genome-section {
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.3), rgba(0, 172, 193, 0.2));
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.genome-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.genome-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-box {
+    background: rgba(10, 15, 46, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--bioluminescent);
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.genome-feature {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(57, 255, 20, 0.1);
+    border-left: 3px solid var(--bioluminescent);
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.findings-section {
+    margin-top: 1.5rem;
+}
+
+.findings-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.finding-card {
+    background: rgba(10, 15, 46, 0.4);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.finding-card:hover {
+    border-left-color: var(--bioluminescent);
+    box-shadow: 0 5px 20px rgba(100, 255, 218, 0.2);
+    transform: translateX(5px);
+}
+
+.finding-card.evolutionary {
+    border-left-color: var(--neon-pink);
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(0, 255, 255, 0.1));
+}
+
+.finding-card h4 {
+    color: var(--bioluminescent);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.finding-card p {
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+}
+
+.finding-card ul {
+    margin: 1rem 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.finding-card ul li {
+    padding: 0.5rem 0;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.finding-card ul li::before {
+    content: "▸";
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.gene-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.gene-tag, .toxin-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(100, 255, 218, 0.2);
+    color: var(--accent-color);
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid var(--accent-color);
+}
+
+.toxin-tag {
+    background: rgba(255, 0, 128, 0.2);
+    color: var(--neon-pink);
+    border-color: var(--neon-pink);
+}
+
+.toxin-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 1rem 0;
+}
+
+.toxin-list li::before {
+    display: none;
+}
+
+.highlight {
+    background: rgba(57, 255, 20, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--bioluminescent);
+    margin: 1rem 0;
+    font-style: italic;
+}
+
+.highlight strong {
+    color: var(--bioluminescent);
+}
+
+.case-study-box, .nematocyst-info {
+    background: rgba(0, 172, 193, 0.15);
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 1px solid rgba(100, 255, 218, 0.4);
+}
+
+.case-study-box strong, .nematocyst-info strong {
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+}
+
+.case-study-box ul, .nematocyst-info ul {
+    margin-top: 0.8rem;
+}
+
+.protein-section {
+    margin-top: 2rem;
+}
+
+.protein-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.protein-table {
+    overflow-x: auto;
+}
+
+.protein-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(10, 15, 46, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.protein-table thead {
+    background: rgba(100, 255, 218, 0.2);
+}
+
+.protein-table th {
+    padding: 1rem;
+    text-align: left;
+    color: var(--accent-color);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.protein-table td {
+    padding: 1rem;
+    color: var(--text-light);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.protein-table tr:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+/* Modal Content Scrolling */
+#modalContent {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+#modalContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modalContent::-webkit-scrollbar-track {
+    background: rgba(10, 15, 46, 0.5);
+    border-radius: 10px;
+}
+
+#modalContent::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+#modalContent::-webkit-scrollbar-thumb:hover {
+    background: var(--bioluminescent);
+}
+
+/* Comparative Genomics Section */
+.comparative-genomics {
+    grid-column: 1 / -1;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.2), rgba(0, 172, 193, 0.15));
+    border-radius: 15px;
+    border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.comparative-genomics h3 {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-intro {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(57, 255, 20, 0.1);
+    border-radius: 8px;
+}
+
+.genomics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.genomics-card {
+    background: rgba(10, 15, 46, 0.6);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(100, 255, 218, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.genomics-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--bioluminescent));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.genomics-card:hover::before {
+    transform: scaleX(1);
+}
+
+.genomics-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+}
+
+.genomics-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.genomics-card h4 {
+    color: var(--bioluminescent);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.genomics-card p {
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.genomics-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(57, 255, 20, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--bioluminescent);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bioluminescent);
+}
+
+.genomics-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bioluminescent);
+}
+
+.stat-desc {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tool-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(100, 255, 218, 0.2);
+    color: var(--accent-color);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--accent-color);
+    transition: all 0.2s ease;
+}
+
+.tool-tag:hover {
+    background: var(--accent-color);
+    color: var(--dark-bg);
+    transform: scale(1.05);
+}
+
+.conclusion-box {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.2), rgba(0, 255, 255, 0.2));
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--neon-pink);
+    text-align: center;
+}
+
+.conclusion-box h4 {
+    color: var(--neon-pink);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.conclusion-box p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
